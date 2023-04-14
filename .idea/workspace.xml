@@ -29,6 +29,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/users.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/ECategory.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/OrderItem.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderItemService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderService.java" afterDir="false" />
@@ -47,10 +48,24 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderViewLauncher.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserMenuView.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/ECategory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Order.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/OrderItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IOrderItemService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IOrderService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IProductService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IUserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/OrderItemService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/utils/DateUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/codegym/utils/FileUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/ECategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Category.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" afterDir="false" />
@@ -150,7 +165,7 @@
       <workItem from="1681372183288" duration="4161000" />
       <workItem from="1681393562605" duration="13396000" />
       <workItem from="1681433905677" duration="2496000" />
-      <workItem from="1681459183383" duration="5543000" />
+      <workItem from="1681459183383" duration="5648000" />
     </task>
     <servers />
   </component>
