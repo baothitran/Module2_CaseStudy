@@ -5,18 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f192e714-4a52-4e6c-addb-e5a1d2b09fc1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/BaoThi.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/DateUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/MainLauncher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/ProductView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Kiemtra/MD2_Kiemtra.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/data/student.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/service/IStudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/utils/CSVUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/utils/ConvertUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/utils/ValidateUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/MenuSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhASC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhESC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/StudentView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorByName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorByPrice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/order.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/users.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/OrderItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderItemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderItemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/AppUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/AdminView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/InputOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderViewLauncher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserMenuView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/ECategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/DateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/MainLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/MainLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/ProductView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +66,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
       </list>
@@ -44,6 +85,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2OCGddzT4uo3xiamPZcjbFi0grl" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,15 +102,38 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "F:/Test2",
+    "last_opened_file_path": "F:/Test5/Module2-C0123K1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.codegym.Main" />
+      <module name="Module2_CaseStudy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.codegym.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,7 +146,11 @@
       <workItem from="1681099272342" duration="1513000" />
       <workItem from="1681139782068" duration="756000" />
       <workItem from="1681187461558" duration="8378000" />
-      <workItem from="1681261545983" duration="9931000" />
+      <workItem from="1681261545983" duration="19615000" />
+      <workItem from="1681372183288" duration="4161000" />
+      <workItem from="1681393562605" duration="13396000" />
+      <workItem from="1681433905677" duration="2496000" />
+      <workItem from="1681459183383" duration="5543000" />
     </task>
     <servers />
   </component>

@@ -1,16 +1,16 @@
 package com.codegym.model;
 
 public class Product {
-    private long productId;
+    private Long productId;
     private String productName;
-    private int quantity;
-    private double price;
-    private Category category;
+    private Integer quantity;
+    private Double price;
+    private ECategory category;
 
     public Product() {
     }
 
-    public Product(long productId, String productName, int quantity, double price, Category category) {
+    public Product(long productId, String productName, int quantity, double price, ECategory category) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
@@ -18,11 +18,20 @@ public class Product {
         this.category = category;
     }
 
-    public long getProductId() {
+    public Product(String product) {
+        String[] items = product.split(",");
+        this.productId = Long.parseLong(items[0]);
+        this.productName = items[1];
+        this.quantity = Integer.parseInt(items[2]);
+        this.price = Double.parseDouble(items[3]);
+        this.category = ECategory.valueOf(items[4]);
+    }
+
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -34,7 +43,7 @@ public class Product {
         this.productName = productName;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -42,7 +51,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -50,11 +59,11 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public ECategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(ECategory category) {
         this.category = category;
     }
 

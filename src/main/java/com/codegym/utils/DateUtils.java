@@ -16,7 +16,6 @@ public class DateUtils {
         return null;
     }
 
-    // date -> '10-04-2023 14:16:30'
 
     public static String formatDate(Date date) {
         return simpleDateFormat.format(date);

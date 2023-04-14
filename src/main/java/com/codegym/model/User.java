@@ -1,9 +1,10 @@
 package com.codegym.model;
 
+
 import java.util.Date;
 
 public class User {
-    private long ID;
+    private Long ID;
     private String account;
     private String password;
     private String fullname;
@@ -27,11 +28,29 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public long getID() {
+
+    public static User parseUser(String raw) {
+        User user = new User();
+        String[] fields = raw.split(",");
+        user.ID = Long.parseLong(fields[0]);
+        user.account = fields[1];
+        user.password = fields[2];
+        user.fullname = fields[3];
+        user.phone = fields[4];
+        user.email = fields[5];
+        user.address = fields[6];
+        user.role = Role.parseRole(fields[7]);
+        user.createdDate = fields[8];
+        String temp = fields[9];
+
+        return user;
+    }
+
+    public Long getID() {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
