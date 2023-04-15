@@ -1,42 +1,27 @@
 package com.codegym.model;
 
-public class OrderItem {
-    private Long id;
-    private double price;
-    private int quantity;
-    private long orderId;
-    private int productId;
-    private String productName;
-    private double total;
-    private double grandTotal;
+import com.codegym.service.ProductService;
 
-    public OrderItem(long id, double price, int quantity, long orderId, int productId, String productName, double total) {
-        this.id = id;
-        this.price = price;
-        this.quantity = quantity;
-        this.orderId = orderId;
-        this.productId = productId;
-        this.productName = productName;
-        this.total = total;
-    }
+public class OrderItem {
+    ProductService productService = new ProductService();
+
+    private long id;
+    private long idProduct;
+    private long idOrder;
+    private int quantity;
+    private double price;
+
 
     public OrderItem() {
 
     }
 
-
-    public static OrderItem parseOrderItem(String record) {
-        OrderItem orderItem = new OrderItem();
-        String[] fields = record.split(",");
-        orderItem.id = Long.parseLong(fields[0]);
-        orderItem.price = Double.parseDouble(fields[1]);
-        orderItem.quantity = Integer.parseInt(fields[2]);
-        orderItem.orderId = Long.parseLong(fields[3]);
-        orderItem.productId = Integer.parseInt(fields[4]);
-        orderItem.productName = fields[5];
-        orderItem.total = Double.parseDouble(fields[6]);
-        orderItem.grandTotal = Double.parseDouble(fields[7]);
-        return orderItem ;
+    public OrderItem(long id, long idProduct, long idOrder, int quantity, double price) {
+        this.id = id;
+        this.idProduct = idProduct;
+        this.idOrder = idOrder;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public long getId() {
@@ -47,59 +32,47 @@ public class OrderItem {
         this.id = id;
     }
 
-    public double getPrice() {
-        return price;
-    }
-    public double getTotal(){
-        return price * quantity;
+    public long getIdProduct() {
+        return idProduct;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setIdProduct(long idProduct) {
+        this.idProduct = idProduct;
+    }
+
+    public long getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(long idOrder) {
+        this.idOrder = idOrder;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public double getGrandTotal() {
-        return grandTotal ;
-    }
-
-    public void setGrandTotal(double grandTotal) {
-        this.grandTotal = grandTotal;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public long getOrderId() {
-        return orderId;
+    public double getPrice() {
+        return price;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
+    public void setPrice(double price) {
+        this.price = price;
     }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public String toData (){
+        return String.format("%s,%s,%s,%s,%s",this.id,this.idProduct,this.idOrder,this.quantity,this.price);
     }
 
     @Override
     public String toString() {
-        return id + "," + price + "," + quantity + "," + orderId + "," + productId + "," + productName+","+total+","+grandTotal;
+        Product product = productService.findProductByID(this.idProduct);
+        return String.format("%10s %15s %20s %10s %10s", this.id, this.idOrder, product.getNameProduct(), this.price, this.quantity);
+
     }
+
+
 }

@@ -1,267 +1,272 @@
 package com.codegym.view;
 
+import com.codegym.feature.BannerApp;
+import com.codegym.feature.InitApp;
+import com.codegym.model.ActionType;
+import com.codegym.model.ECategory;
 import com.codegym.model.Product;
+import com.codegym.model.User;
 import com.codegym.service.ProductService;
-import com.codegym.utils.AppUtils;
 
 import java.util.List;
 import java.util.Scanner;
 
-
 public class ProductView {
-    private final Scanner scanner = new Scanner(System.in);
-    ProductService productService = new ProductService();
-    public ProductView(){
-    }
-    public void showProduct() {
-        System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ DANH SACH SAN PHAM ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-        System.out.printf("\t│\t\t%-6s   ││        %-50s   ││       %-2s   ││   %10s      ││       %-11s       │\n", "ID", "Ten san pham", "So luong", "Gia san pham",  "Loại");
-        System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-        List<Product> products = productService.getAll();
-        for (Product product : products) {
-            System.out.printf("\t│\t%-10s   ││   %-55s   ││    %8s      ││     %12s    ││    %-14s       │\n",
-                    product.getProductId(),
-                    product.getProductName(),
-                    product.getQuantity(),
-                    product.getPrice(),
-                    product.getCategory()
-            );
-        }
-        System.out.println("\t▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n");
+    public static Scanner scanner = new Scanner(System.in);
+    static ProductService productService = new ProductService();
+    static ProductAdminView productAdminView = new ProductAdminView();
 
-    }
-    public void addProduct() {
+    BannerApp bannerApp= new BannerApp();
+
+    public void mainMenuView (User user) throws Exception {
+        boolean checkMenuAction = false;
+        List<Product> products ;
         do {
-            try {
-                String productName = inputProductName();
-                double productPrice = inputPrice();
-                int productQuantity = inputQuantity();
-                Product newProduct = new Product(productId, productName, quantity, price, category);
-                productService.add(newProduct);
-                System.out.println("\n Them san pham thanh cong!");
-            } catch (Exception e) {
-                System.out.println("Nhap sai! Vui long nhap lai.");
+            products = productService.getAllProducts();
+            bannerApp.menuBanner("Product-ViewMenu");
+            String choiceMenuAction = scanner.nextLine();
+            switch (choiceMenuAction){
+                case "1":
+                    addProductView();
+                    checkMenuAction= InitApp.checkContinueActionMenu();
+                    break;
+                case "2":
+                    updateProductView(products,user);
+                    checkMenuAction = InitApp.checkContinueActionMenu();
+                    break;
+                case "3":
+                    removeProductView(products,user);
+                    checkMenuAction = InitApp.checkContinueActionMenu();
+                    break;
+                case "4":
+                    searchProductView(user);
+                    checkMenuAction = InitApp.checkContinueActionMenu();
+                    break;
+                case "5":
+                    sortProductView(products,user);
+                    checkMenuAction = InitApp.checkContinueActionMenu();
+                    break;
+                case "6":
+//                    showProductPagination(products);
+                    showProductView(products);
+                    checkMenuAction = InitApp.checkContinueActionMenu();
+                    break;
+                case "0":
+                    System.exit(5);
+                    break;
+                case "r":
+                    productAdminView.menuAdminView(user);
+                default:
+                    checkMenuAction = true;
+                    break;
             }
-        } while (AppUtils.isRetry(InputOption.ADD));
+        }
+        while (checkMenuAction);
     }
 
-    public void updateProduct() {
-        boolean isRetry = false;
+    public void addProductView() {
+        Product product=new Product();
+        List<Product> productList = productService.getAllProducts();
+        boolean checkAddProductMenu = false;
         do {
+            checkAddProductMenu = false;
             try {
-                showProduct();
-                System.out.print("Nhap id ban muon tim kiem: ");
-                long id = inputId();
-                System.out.println("\t█████████████ SỬA █████████████\n"
-                        + "\t█                             █\n"
-                        + "\t█    1. Doi ten san pham      █\n"
-                        + "\t█    2. Doi Gia san pham      █\n"
-                        + "\t█    3. Sua so luong          █\n"
-                        + "\t█    4. Quay lại              █\n"
-                        + "\t█                             █\n"
-                        + "\t███████████████████████████████");
-                int option = AppUtils.retryChoose(1, 4);
-                Product newProduct = new Product();
-                newProduct.setProductId(id);
-                switch (option) {
-                    case 1:
-                        String productName = inputProductName();
-                        newProduct.setProductName(productName);
-                        productService.update(newProduct);
-                        System.out.println("Ban da doi ten thanh cong!");
+                bannerApp.menuBanner("Product-Service");
+                System.out.println();
+                product.setIdProduct(System.currentTimeMillis()/100000);
+                String nameProduct = productService.inputProductName();
+                product.setNameProduct(nameProduct);
+                System.out.print("【2】ADD PRICE PRODUCT");
+                long priceProduct = Long.parseLong(scanner.nextLine());
+                product.setPrice(priceProduct);
+                System.out.print("【3】ADD QUANTITY PRODUCT");
+                int quantityProduct = Integer.parseInt(scanner.nextLine());
+                product.setQuantity(quantityProduct);
+                System.out.print("【4】ADD ID CATEGORY");
+                int idCategory = Integer.parseInt(scanner.nextLine());
+                product.setCategory(ECategory.findCategoryByID(idCategory));
+                checkAddProductMenu = false;
+                productService.addProduct(product);
+            }
+            catch (Exception e){
+                System.out.println("Error value!Type again!");
+                checkAddProductMenu = true;
+            }
+        }
+        while (checkAddProductMenu);
+    }
+
+    public void updateProductView(List<Product> products,User user) throws Exception {
+        Product product;
+        boolean checkUpdateProduct = false;
+//        showProductPagination(products);
+        showProductView(products);
+        System.out.println("■ Select ID Product you want to update:");
+        int choiceIDProduct = Integer.parseInt(scanner.nextLine());
+        product = productService.findProductByID(choiceIDProduct);
+        do {
+            checkUpdateProduct = false;
+            bannerApp.menuBanner("Update-product");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    String name = productService.inputProductName();
+                    product.setNameProduct(name);
+                    checkUpdateProduct = InitApp.checkContinueUpdateMenu();
+                    break;
+                case "2":
+                    int quantity = Integer.parseInt(scanner.nextLine());
+                    product.setQuantity(quantity);
+                    checkUpdateProduct = InitApp.checkContinueUpdateMenu();
+                    break;
+                case "3":
+                    product.setPrice(productService.inputPrice(ActionType.Edit));
+                    checkUpdateProduct = InitApp.checkContinueUpdateMenu();
+                    break;
+                case "r":
+                    mainMenuView(user);
+                default:
+                    checkUpdateProduct = true;
+                    break;
+            }
+            productService.updateProduct(product,choiceIDProduct);
+        }
+        while (checkUpdateProduct);
+    }
+    public void sortProductView(List<Product> products,User user) throws Exception {
+        boolean checkSortProduct = false;
+        do {
+            checkSortProduct = false;
+            bannerApp.menuBanner("Sort-Product-Menu");
+            String choiceSortProduct = scanner.nextLine();
+            switch (choiceSortProduct) {
+                case "1":
+                    productService.sortByPrice(products);
+                    break;
+                case "r":
+                    mainMenuView(user);
+                default:
+                    checkSortProduct = true;
+                    break;
+            }
+        }
+        while (checkSortProduct);
+    }
+
+    public void searchProductView(User user) throws Exception {
+        try {
+            boolean checkSearchingProduct = false;
+            do {
+                Product product;
+                checkSearchingProduct = false;
+                bannerApp.menuBanner("Searching-Product");
+                String choiceSearching = scanner.nextLine();
+                switch (choiceSearching){
+                    case "1":
+                        System.out.println("■ Enter ID Product:");
+                        long idProduct = Long.parseLong(scanner.nextLine());
+                        product = productService.findProductByID(idProduct);
+                        System.out.printf("%10s %20s %20s %10s %10s","ID","Name product","Price","Quantity","Type");
+                        System.out.println();
+                        System.out.println(product) ;
                         break;
-                    case 2:
-                        double price = inputPrice();
-                        newProduct.setPrice(price);
-                        productService.update(newProduct);
-                        System.out.println("Ban da doi gia thanh cong!");
+                    case "2":
+                        System.out.println("■ Enter Name Product:");
+                        String name = scanner.nextLine().toUpperCase();
+                        List<Product> products = productService.searchProductByName(name);
+//                        products = productService.searchProductByName(name);
+                        showProductView(products);
                         break;
-                    case 3:
-                        int quantity = inputQuantity();
-                        newProduct.setQuantity(quantity);
-                        productService.update(newProduct);
-                        System.out.println("Ban da so luong gia thanh cong!");
+                    case "r":
+                        mainMenuView(user);
+                    default:
+                        System.out.println("Error value! Type again");
+                        checkSearchingProduct=true;
                         break;
                 }
-                isRetry = option != 4 && AppUtils.isRetry(InputOption.UPDATE);
-            } catch (Exception e) {
-                System.out.println("Nhap sai! Vui long nhap lai.");
             }
-        } while (isRetry);
-    }
-
-    public void removeProduct() {
-        showProduct();
-        System.out.println("Nhap id ban muon xoa: ");
-        int idProduct = inputId();
-        productService.remove(idProduct);
-        showProduct();
-    }
-
-    public void searchProductByTitle() {
-        try {
-            showProduct();
-            System.out.println("Nhap ten san pham: ");
-            String title = scanner.nextLine();
-
-            while (title.trim().equals("")) {
-                System.out.println("Ten san pham khong duoc de trong.");
-                title = scanner.nextLine();
-            }
-            productService.searchByName(title.toLowerCase());
-        } catch (Exception e) {
-            System.out.println("Nhap sai! Vui long nhap lai");
+            while (checkSearchingProduct);
+        }
+        catch (Exception e){
+            throw new Exception("Value Error");
         }
     }
 
-    public void searchProductById() {
-        try {
-            showProduct();
-            System.out.println("Nhap id cua san pham: ");
-            long id = inputId();
-            productService.searchById(id);
-        } catch (Exception e) {
-            System.out.println("Nhap sai! Vui long nhap lai");
+
+    public void removeProductView(List<Product> products, User user) throws Exception {
+        System.out.println("■ Enter your ID Product you want to remove:");
+        int idRemovedProduct = Integer.parseInt(scanner.nextLine());
+        productService.removeProductByID(idRemovedProduct,products,user);
+    }
+
+    public void showProductView(List<Product> products) {
+        System.out.println("╔════════════════════════════════LIST PRODUCT══════════════════════════════════╗");
+        System.out.printf("║%10s║ %20s║ %20s║ %10s║ %10s║","ID","Name product","Price","Quantity","Type");
+        System.out.println();
+        for (Product product: products){
+            System.out.println(product);
         }
+        System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
     }
 
-    public void sortQuantityASC() {
-        productService.sortQuantityASC();
-    }
+//    public void showProductPagination (List<Product> productList){
+//        int perProductPage = 4;
+//        int totalPage = (int)Math.ceil((double) productList.size()/perProductPage);
+//        int currentPage=1;
+//        List<Product> productsPerPageList;
+//        if (currentPage == totalPage) {
+//            productsPerPageList = productList.subList((currentPage - 1) * perProductPage, productList.size());
+//        } else {
+//            productsPerPageList = productList.subList((currentPage - 1) * perProductPage, (currentPage - 1) * perProductPage + perProductPage);
+//        }
+//        System.out.println("╔════════════════════════════════PRODUCT LIST══════════════════════════════════╗");
+//        System.out.println(String.format("║%10s║ %20s║ %20s║ %10s║ %10s║", "ID Product", "Name Product", "Price", "Quantity", "Type"));
+//        for (Product product : productsPerPageList) {
+//            System.out.println(product);
+//        }
+//        System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+//
+//        System.out.print("║\t"+"Page:");
+//        for (int j = 1; j <= totalPage; j++) {
+//            System.out.print("\t"+j+"  " );
+//        }
+//        showProductPaginationView(totalPage,perProductPage,productList);
+//
+//    }
 
-    public void sortQuantityDESC() {
-        productService.sortQuantityDESC();
-    }
 
-    public void launch() {
-        int choice;
+    public void showProductPaginationView (int totalPage,int perProductPage,List<Product> productList){
+        boolean checkContinueAction;
         do {
-            System.out.print("\t\t████████████████████████████████████████████████████████████████████████████████████████████████████" +
-                    "\n\t\t█                                                                                                  █" +
-                    "\n\t\t█                                        QUAN LI SAN PHAM                                          █" +
-                    "\n\t\t█                                           Main Menu                                              █" +
-                    "\n\t\t█                                                                                                  █" +
-                    "\n\t\t█                   1. Hien thi danh sach.                                                         █" +
-                    "\n\t\t█                   2. Them san pham.                                                              █" +
-                    "\n\t\t█                   3. Sua san pham.                                                               █" +
-                    "\n\t\t█                   4. Xoa san pham.                                                               █" +
-                    "\n\t\t█                   5. Tim ten san pham.                                                           █" +
-                    "\n\t\t█                   6. Tim ID san pham.                                                            █" +
-                    "\n\t\t█                   7. Sap xep gia tang dan.                                                       █" +
-                    "\n\t\t█                   8. Sap xep gia giam dan.                                                       █" +
-                    "\n\t\t█                   9. Quay lai.                                                                   █" +
-                    "\n\t\t█                                                                                                  █" +
-                    "\n\t\t████████████████████████████████████████████████████████████████████████████████████████████████████\n" +
-                    "\n\t\tChon chuc nang ma ban muon: ");
-            choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    showProduct();
-                    break;
-                case 2:
-                    addProduct();
-                    break;
-                case 3:
-                    updateProduct();
-                    break;
-                case 4:
-                    removeProduct();
-                    break;
-                case 5:
-                    searchProductByTitle();
-                    break;
-                case 6:
-                    searchProductById();
-                    break;
-                case 7:
-                    sortQuantityASC();
-                    break;
-                case 8:
-                    sortQuantityDESC();
-                    break;
-                case 9:
-                    MainLauncher.menuOption();
-                    break;
-                default:
-                    System.out.println("So da chon khong hop le! Vui long nhap lai.");
+            checkContinueAction = false;
+            System.out.println();
+            System.out.println("Enter your page you want to show:");
+            int currentPage = Integer.parseInt(scanner.nextLine());
+            if (currentPage<=totalPage){
+                List<Product> productsPerPageList1;
+                if (currentPage == totalPage) {
+                    productsPerPageList1 = productList.subList((currentPage - 1) * perProductPage, productList.size());
+                } else {
+                    productsPerPageList1 = productList.subList((currentPage - 1) * perProductPage, (currentPage - 1) * perProductPage + perProductPage);
+                }
+                System.out.println("╔════════════════════════════════PRODUCT LIST══════════════════════════════════╗");
+                for (Product product : productsPerPageList1) {
+                    System.out.println(product);
+                }
+                System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+                System.out.print("║\t"+"Page:");
+                for (int j = 1; j <= totalPage; j++) {
+                    System.out.print("\t"+j+" " );
+                }
+                System.out.println();
+                checkContinueAction = InitApp.checkContinueWatchPage();
             }
-        } while (true);
-    }
-
-    // kiem tra ten, gia, so luong sp
-    public String inputProductName() {
-        System.out.println("Nhap ten san pham: ");
-        System.out.print("═╬═══► ");
-        String nameProduct = scanner.nextLine();
-        while (nameProduct.trim().equals("")) {
-            System.out.println("Ten san pham khong duoc de trong");
-            System.out.print("═╬═══► ");
-            nameProduct = scanner.nextLine();
+            else {
+                System.out.println("Your page must be less or equal than "+totalPage+". Type again");
+                checkContinueAction = true;
+            }
         }
-//        do {
-//            if (nameProduct.isEmpty()) {
-//                System.out.println("Ten san pham khong duoc de trong");
-//                System.out.print("═╬═══► ");
-//                nameProduct = scanner.nextLine();
-//                continue;
-//            }
-//            break;
-//        } while (true);
-        return nameProduct;
+        while (checkContinueAction);
     }
-
-    public int inputQuantity() {
-        do {
-            System.out.println("nhap so luong san pham: ");
-            int quantity = scanner.nextInt();
-            if (quantity < 0) {
-                System.out.println("Nhap khong dung! Vui long nhap lai.");
-                continue;
-            }
-            return quantity;
-        }
-        while (true);
-    }
-
-    public double inputPrice() {
-//        boolean isEntry = false;
-//        System.out.println("nhap gia san pham (vd: 10.000 VND )");
-//        double price = scanner.nextDouble();
-        do {
-            System.out.println("nhap gia san pham (vd: 10.000 VND )");
-            double price = scanner.nextDouble();
-            if ((price < 0 || price % 1000 != 0) || price > 100000) {
-                System.out.println("Nhap khong dung! Vui long nhap lai (gia phai be hon 100.000 NVD)");
-                System.out.print("═╬═══► :");
-                price = scanner.nextDouble();
-                continue;
-            }
-            return price;
-        }
-        while (true);
-    }
-
-    public int inputId() {
-        boolean isRetry = false;
-        int id;
-        do {
-            id = scanner.nextInt();
-            boolean exist = productService.existsById(id);
-            if (!exist) {
-                System.out.println("id nay khong ton tai! Vui long nhap lai");
-                isRetry = !exist;
-            }
-            if (exist) {
-                return id;
-            }
-        } while (isRetry);
-        return id;
-    }
-
-
-
-
 
 }
-

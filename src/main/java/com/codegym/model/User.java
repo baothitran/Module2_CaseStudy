@@ -1,56 +1,57 @@
 package com.codegym.model;
 
+import com.codegym.utils.DateUtils;
 
 import java.util.Date;
 
 public class User {
-    private Long ID;
+    private long ID;
     private String account;
     private String password;
     private String fullname;
-    private String phone;
+    private String mobile;
     private String email;
-    private String address;
     private Role role;
     private Date createdDate;
+    private String address;
+
     public User() {
     }
 
-    public User(long ID, String account, String password, String fullname, String phone, String email, String address, Role role, Date createdDate) {
+    public User(long ID, String account, String password, String fullname, String mobile, String email, String address, Role role) {
         this.ID = ID;
         this.account = account;
         this.password = password;
         this.fullname = fullname;
-        this.phone = phone;
-        this.email = email;
+        this.mobile = mobile;
         this.address = address;
+        this.email = email;
         this.role = role;
+    }
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
 
-    public static User parseUser(String raw) {
-        User user = new User();
-        String[] fields = raw.split(",");
-        user.ID = Long.parseLong(fields[0]);
-        user.account = fields[1];
-        user.password = fields[2];
-        user.fullname = fields[3];
-        user.phone = fields[4];
-        user.email = fields[5];
-        user.address = fields[6];
-        user.role = Role.parseRole(fields[7]);
-        user.createdDate = fields[8];
-        String temp = fields[9];
-
-        return user;
-    }
-
-    public Long getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(Long ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 
@@ -78,12 +79,12 @@ public class User {
         this.fullname = fullname;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getEmail() {
@@ -94,14 +95,6 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -110,13 +103,15 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    @Override
+    public String toString() {
+        return String.format("%10s %10s %10s %10s %10s %10s %10s %10s", this.ID,
+                this.account, this.password, this.fullname, this.mobile, this.email, this.address, this.role);
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public String toData() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s", this.getID(), this.getAccount(), this.getPassword(),
+                this.getFullname(), this.getMobile(), this.getEmail(), this.getAddress(), this.getRole()
+                , DateUtils.convertDateToString(this.createdDate));
     }
-
-
 }

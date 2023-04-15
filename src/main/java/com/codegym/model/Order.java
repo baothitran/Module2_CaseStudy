@@ -1,39 +1,77 @@
 package com.codegym.model;
 
-import java.time.Instant;
+import com.codegym.utils.DateUtils;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private Long id;
-    private String fullName;
-    private String phone;
-    private String address;
+    private String nameUser;
+    private long idUser;
+    private String addressUser;
+    private String phoneNumber;
 
-    private Double grandTotal;
-    private Date createdAt;
+    public String getAddressUser() {
+        return addressUser;
+    }
+
+    public void setAddressUser(String addressUser) {
+        this.addressUser = addressUser;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    private long id;
+    private Date dateOrder;
+    private double total;
+    private List<OrderItem> orderItems;
+
+    private Status status;
 
     public Order() {
-
+        orderItems = new ArrayList<>();
     }
 
-    public Order(long id, String fullName, String phone, String address) {
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+    }
+
+    public Order(long id, Date dateOrder, double total) {
         this.id = id;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.address = address;
+        this.dateOrder = dateOrder;
+        this.total = total;
     }
-
-    public static Order parseOrder(String record) {
-        Order order = new Order();
-        String[] field = record.split(",");
-        order.id = Long.parseLong(field[0]);
-        order.fullName = field[1];
-        order.phone = field[2];
-        order.address = field[3];
-        return order;
-    }
-
 
     public long getId() {
         return id;
@@ -43,56 +81,46 @@ public class Order {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public Date getDateOrder() {
+        return dateOrder;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setDateOrder(Date dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
-    public String getMobile() {
-        return phone;
+    public double getTotal() {
+        return total;
     }
 
-    public void setMobile(String mobile) {
-        this.phone = phone;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public String getAddress() {
-        return address;
+    public List<OrderItem> getOrderItem() {
+        return orderItems;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setOrderItem(List<OrderItem> orderItem) {
+        this.orderItems = orderItem;
     }
 
-    public String getEmail() {
-        return address;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setEmail(String address) {
-        this.address = address;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public Double getGrandTotal() {
-        return grandTotal;
-    }
-
-    public void setGrandTotal(Double grandTotal) {
-        this.grandTotal = grandTotal;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public String toData() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", this.id, DateUtils.convertDateToString(this.dateOrder),this.idUser,this.nameUser
+                ,this.getPhoneNumber(),this.getAddressUser(),this.total, this.status);
     }
 
     @Override
     public String toString() {
-        return id + "," + fullName + "," + phone + "," + address;
+        String temp = String.valueOf(this.getStatus());
+        return String.format("║%10s║ %20s║ %15s║ %10s║ %10s║", this.id, DateUtils.convertDateToString(this.getDateOrder()), getTotal(), temp, this.orderItems);
     }
 }

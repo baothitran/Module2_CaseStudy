@@ -1,62 +1,53 @@
 package com.codegym.model;
 
 public class Product {
-    private Long productId;
-    private String productName;
-    private Integer quantity;
-    private Double price;
+    private long idProduct;
+    private String nameProduct;
+    private double price;
+    private int quantity;
     private ECategory category;
 
     public Product() {
     }
 
-    public Product(long productId, String productName, int quantity, double price, ECategory category) {
-        this.productId = productId;
-        this.productName = productName;
-        this.quantity = quantity;
+    public Product(long idProduct, String nameProduct, double price, int quantity, ECategory category) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
         this.price = price;
+        this.quantity = quantity;
         this.category = category;
     }
 
-    public Product(String product) {
-        String[] items = product.split(",");
-        this.productId = Long.parseLong(items[0]);
-        this.productName = items[1];
-        this.quantity = Integer.parseInt(items[2]);
-        this.price = Double.parseDouble(items[3]);
-        this.category = ECategory.valueOf(items[4]);
+    public long getIdProduct() {
+        return idProduct;
     }
 
-    public Long getProductId() {
-        return productId;
+    public void setIdProduct(long idProduct) {
+        this.idProduct = idProduct;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public String getProductName() {
-        return productName;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public ECategory getCategory() {
@@ -67,8 +58,19 @@ public class Product {
         this.category = category;
     }
 
+    public void updateProduct (Product product){
+        this.setIdProduct(product.getIdProduct());
+        this.setNameProduct(product.getNameProduct());
+        this.setPrice(product.getPrice());
+        this.setQuantity(product.getQuantity());
+        this.setCategory(product.getCategory());
+    }
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s,%s", this.productId, this.productName, this.quantity, this.price, this.category);
+        return
+                String.format("║%10s║ %20s║ %20s║ %10s║ %10s║",this.idProduct,this.nameProduct,this.price,this.quantity,this.category);
+    }
+    public String toData(){
+        return String.format("%s,%s,%s,%s,%s",this.idProduct,this.nameProduct,this.quantity,this.price,category.getIdCategory());
     }
 }

@@ -1,69 +1,194 @@
 package com.codegym.service;
 
+import com.codegym.feature.BannerApp;
+import com.codegym.feature.InitApp;
 import com.codegym.model.Order;
+import com.codegym.model.OrderItem;
+import com.codegym.model.Status;
+import com.codegym.model.User;
+import com.codegym.utils.DateUtils;
 import com.codegym.utils.FileUtils;
+import com.codegym.view.OrderView;
 
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
-public class OrderService implements IOrderService{
-    private final static String PATHORDER = "F:\\Test3\\CaseStudy_m2\\CaseStudy\\data\\orders.csv";
-    private static OrderService instance;
+public class OrderService implements IOrderItemService {
+    public static Scanner scanner = new Scanner(System.in);
+    public static OrderView orderView = new OrderView();
 
-    public OrderService() {}
-
-    public static OrderService getInstance() {
-        if(instance == null)
-            instance = new OrderService();
-        return instance;
+    OrderItemService orderItemService = new OrderItemService();
+    FileUtils fileService;
+    public OrderService (){
+        fileService = new FileUtils();
     }
-    @Override
-    public List<Order> findAll() {
-        List<Order> orders = new ArrayList<>();
-        List<String> records = FileUtils.read(PATHORDER);
-        for (String record: records) {
-            orders.add(Order.parseOrder(record));
+
+    private String filePath = "F:\\BaoThi\\MD2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\order.csv";
+    public List<Order> getAllOrderList (){
+        List<String> orderLines = fileService.readFile(filePath);
+        List<Order> orderList = new ArrayList<>();
+        for (String orderline : orderLines){
+            String[] orderlines1 = orderline.split(",");
+            long id = Long.parseLong(orderlines1[0]);
+            long idUser = Long.parseLong(orderlines1[2]);
+
+            double total = Double.parseDouble(orderlines1[6]);
+            Status status = Status.findStatusByName(orderlines1[7]);
+            Order order = new Order(id, DateUtils.convertStringToDate(orderlines1[1]),total);
+            order.setPhoneNumber(orderlines1[4]);
+            order.setAddressUser(orderlines1[5]);
+            order.setIdUser(idUser);
+            order.setNameUser(orderlines1[3]);
+            order.setStatus(status);
+            List<OrderItem> orderItems = orderItemService.findOrderItemByOrderID(order.getId());
+            order.setOrderItem(orderItems);
+            orderList.add(order);
         }
-        return orders;
+        return orderList;
     }
 
-    @Override
-    public void add(Order newOrder) {
-        List<Order> orders = findAll();
-        newOrder.setCreatedAt(Instant.now());
-        orders.add(newOrder);
-        FileUtils.write(PATHORDER, orders);
+    public void addOrder(Order newOrder){
+        List<Order> orderList = getAllOrderList();
+        orderList.add(newOrder);
+        List<String> orderLines = convertListOrdertoListString(orderList);
+        fileService.writeFile(filePath,orderLines);
     }
 
-    @Override
-    public void update() {
-        List<Order> orders = findAll();
-        FileUtils.write(PATHORDER, orders);
-    }
-
-    @Override
-    public Order findById(long id) {
-        List<Order> orders = findAll();
-        for (Order order: orders) {
-            if (order.getId() == id)
+    public Order getOrderByID (long id, List<Order> orderList){
+        for (Order order : orderList){
+            if (order.getId()==id){
                 return order;
+            }
         }
         return null;
     }
 
-    @Override
-    public List<Order> findByUserId(long id) {
-        List<Order> newOrder = new ArrayList<>();
-        for (Order order: findAll()) {
-            if (order.getId() == id)
-                newOrder.add(order);
+    public void saveOrderData (List<Order> orderList){
+        List<String> orderLines = convertListOrdertoListString(orderList);
+        fileService.writeFile(filePath,orderLines);
+    }
+    public List<String> convertListOrdertoListString (List<Order> orderList){
+        List<String> orderListLines = new ArrayList<>();
+        for (Order order : orderList){
+            orderListLines.add(order.toData());
         }
-        return null;
+        return orderListLines;
     }
 
-    @Override
-    public boolean existById(long id) {
-        return findById(id) != null;
+    public List<Order> convertListStringtoListOrder (List<String> list){
+        List<Order> orderList = new ArrayList<>();
+        for (String orderLine : list ){
+            String [] orderLines = orderLine.split(",");
+            long idOrder = Long.parseLong(orderLines[0]);
+            Date date = DateUtils.convertStringToDate(orderLines[1]);
+            double total = Double.parseDouble(orderLines[2]);
+            Status status = Status.findStatusByName(orderLines[3]);
+            Order newOrder = new Order(idOrder,date,total);
+            newOrder.setStatus(status);
+            orderList.add(newOrder);
+        }
+        return orderList;
     }
+
+    public List<Order> searchOrderByDate (List<Order> list){
+        List<Order> orderList = new ArrayList<>();
+        System.out.println("Enter Date (dd-mm-yyyy)");
+        String sdate = scanner.nextLine();
+        for (Order order : list){
+            if (getDataByDate(DateUtils.convertDateToString(order.getDateOrder())).equals(sdate)){
+                orderList.add(order);
+            }
+        }
+        return orderList;
+    }
+
+    public List<Order> searchOrderByMonth (List<Order> list){
+        List<Order> orderList = new ArrayList<>();
+        System.out.println("Enter Month (mm)");
+        String sMonth = scanner.nextLine();
+        for (Order order : list){
+            if (getDataByMonth(DateUtils.convertDateToString(order.getDateOrder())).equals(sMonth)){
+                orderList.add(order);
+            }
+        }
+        return orderList;
+    }
+    public String getDataByDate(String date){
+        date = date.trim();
+        if (date.indexOf(" ")>=0){
+            int index = date.lastIndexOf(" ");
+            return date.substring(index+1);
+        }
+        else return date;
+    }
+    public String getDataByMonth(String month){
+        month = month.trim();
+        if (month.indexOf(" ")>=0){
+            int index = month.lastIndexOf(" ");
+            return month.substring(index+4,index+6);
+        }
+        else return month;
+    }
+    public List<Order> searchOrderByStatus (List<Order> orderList, String nameStatus){
+        List<Order> result = new ArrayList<>();
+        for (Order order : orderList){
+            String temp = String.valueOf(order.getStatus());
+            if (temp.equals(nameStatus)){
+                result.add(order);
+            }
+        }
+        return result;
+    }
+
+    public void getTotalProfit (List<Order> orderList,User user) throws Exception {
+        boolean check;
+        do {
+            BannerApp.menuBanner("profitMenu");
+            check = false;
+            List<Order> paidOrderList = searchOrderByStatus(orderList, "Paid");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Enter the Day you want to show:");
+                    double total1 = 0;
+                    String day = scanner.nextLine();
+                    List<Order> orderList1 = new ArrayList<>();
+                    for (Order order : paidOrderList) {
+                        if (getDataByDate(DateUtils.convertDateToString(order.getDateOrder())).equals(day)) {
+                            total1 += orderView.getTotal(order);
+                            orderList1.add(order);
+                        }
+                    }
+                    orderView.printingAllOrders(orderList1,user);
+                    System.out.print("■ Total:"+ total1 +"\n");
+                    check = InitApp.checkContinueActionShowProfit();
+                    break;
+                case "2":
+                    System.out.println("Enter the Month you want to show:");
+                    double total = 0;
+                    String month = scanner.nextLine();
+                    List<Order> orderList2 = new ArrayList<>();
+                    for (Order order : paidOrderList) {
+                        if (getDataByMonth(DateUtils.convertDateToString(order.getDateOrder())).equals(month)) {
+                            total += orderView.getTotal(order);
+                            orderList2.add(order);
+                        }
+                    }
+                    orderView.printingAllOrders(orderList2,user);
+                    System.out.print("■ Total:" +total+"\n");
+                    check = InitApp.checkContinueActionShowProfit();
+                    break;
+                case "r":
+                    orderView.orderMenuView(user);
+                default:
+                    System.out.println("Wrong value! Type again");
+                    check = true;
+            }
+        }
+        while (check);
+    }
+
+
 }

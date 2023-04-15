@@ -1,273 +1,410 @@
 package com.codegym.view;
 
-import com.codegym.model.Order;
-import com.codegym.model.OrderItem;
-import com.codegym.model.Product;
-import com.codegym.service.*;
+import com.codegym.feature.BannerApp;
+import com.codegym.feature.InitApp;
+import com.codegym.feature.SupportApp;
+import com.codegym.model.*;
+import com.codegym.service.OrderItemService;
+import com.codegym.service.OrderService;
+import com.codegym.service.ProductService;
 import com.codegym.utils.DateUtils;
-import com.codegym.utils.ValidateUtils;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class OrderView {
-    private final Scanner scanner = new Scanner(System.in);
-    private final IProductService productService;
-    private final IOrderService orderService;
-    private final IOrderItemService orderItemService;
+    static Scanner scanner = new Scanner(System.in);
+    Order order;
+    BannerApp bannerApp = new BannerApp();
+    OrderService orderService;
+    ProductService productService;
+    OrderItemService orderItemService;
+    Status status;
+    static ProductAdminView productAdminView = new ProductAdminView();
 
     public OrderView() {
-        productService = ProductService.getInstance();
-        orderItemService = OrderItemService.getInstance();
-        orderService = OrderService.getInstance();
+        productService = new ProductService();
+        orderService = new OrderService();
+        orderItemService = new OrderItemService();
     }
 
-    public List<OrderItem> addOderItems(long orderId) {
-        List<OrderItem> orderItems = new ArrayList<>();
-        ProductView productView = new ProductView();
-        productView.showProduct();
-        System.out.println("Nhap so luong don hang ma ban muon mua");
-        System.out.print("═╬═══► :");
-        int choice = Integer.parseInt(scanner.nextLine());
-        while (choice < 0) {
-            System.out.println("so luong hoa don khong duoc am:");
-            choice = scanner.nextInt();
-        }
-        int count = 0;
+    public void orderMenuView(User user) throws Exception {
+        boolean checkOrderView = false;
         do {
-            try {
-                orderItems.add(addOderItem(orderId));
-                count++;
-            } catch (Exception e) {
-                System.out.println("Khong dung! Vui long nhap lai.");
-            }
-        } while (count < choice);
-        return orderItems;
-    }
-
-    public void addOrder() {
-        try {
-            orderItemService.findAll();
-            long orderId = System.currentTimeMillis() / 1000;
-            System.out.println("Nhap ten (vd: Phuoc Mai)");
-            System.out.print("═╬═══► :");
-            String name = scanner.nextLine();
-            while (name.trim().isEmpty()) {
-                System.out.println("Ten cua ban dang de trong");
-                System.out.print("═╬═══► :");
-                name = scanner.nextLine();
-            }
-            System.out.println("Nhap so dien thoai");
-            System.out.print("═╬═══► :");
-            String phone = scanner.nextLine();
-            while (!ValidateUtils.isPhoneValid(phone) || phone.trim().isEmpty()) {
-                System.out.println("So dien thoai: " + phone + " khong dung dinh dang! Vui long nhap lai.");
-                System.out.println("Nhap lai so dien thoai, phai du 10 so.");
-                System.out.print("═╬═══► :");
-                phone = scanner.nextLine();
-            }
-            System.out.println("Nhap dia chi cua ban");
-            System.out.print("═╬═══► :");
-            String adress = scanner.nextLine();
-            while (adress.trim().isEmpty()) {
-                System.out.println("Dia chi cua ban khong duoc de trong! Vui long nhap lai.");
-                System.out.print("═╬═══► :");
-                adress = scanner.nextLine();
-            }
-            Order order = new Order(orderId, name, phone, adress);
-            List<OrderItem> orderItems = addOderItems(orderId);
-            for (OrderItem orderItem : orderItems) {
-                orderItemService.add(orderItem);
-            }
-            orderService.add(order);
-            System.out.println("Da tao order thanh cong: \n" +
-                    "\t██████████████████████████████████████\n" +
-                    "\t█                                    █\n" +
-                    "\t█           1. In bill               █\n" +
-                    "\t█           2. Quay lai              █\n" +
-                    "\t█           3. Exit                  █\n" +
-                    "\t█                                    █\n" +
-                    "\t██████████████████████████████████████\n\n" +
-                    "Chon chuc nang");
-            System.out.print("═╬═══► :");
-            do {
-                int choice = Integer.parseInt(scanner.nextLine());
-                switch (choice) {
-                    case 1:
-                        showPaymentInfo(order);
-                        break;
-                    case 2:
-                        OrderViewLauncher orderViewlauncher = new OrderViewLauncher();
-                        orderViewlauncher.launch();
-                        break;
-                    case 3:
-                        MainLauncher.mainmenu();
-                        break;
-                    default:
-                        System.out.println("Ban nhap chua dung chuc nang! vui long nhap lai.");
-                }
-            } while (true);
-        } catch (Exception e) {
-            System.out.println("Khong dung! Vui long nhap lai.");
-        }
-    }
-
-    public OrderItem addOderItem(long orderId) {
-        do {
-            try {
-                orderItemService.findAll();
-                ProductView productView = new ProductView();
-                productView.showProduct();
-                long id = System.currentTimeMillis() / 1000;
-                System.out.println("Nhap id ban muon mua");
-                System.out.print("═╬═══► :");
-                int techsId = Integer.parseInt(scanner.nextLine());
-                while (!productService.existsById(techsId)) {
-                    System.out.println("id san pham khong ton tai! vui long nhap lai");
-                    System.out.print("═╬═══► :");
-                    techsId = Integer.parseInt(scanner.nextLine());
-                }
-                Product product = productService.findById(techsId);
-                double price = product.getPrice();
-                System.out.println("Nhap so luong san pham ban muon mua");
-                System.out.print("═╬═══► :");
-                int quantity = Integer.parseInt(scanner.nextLine());
-                while (!checkQuantityProduct(product, quantity)) {
-                    System.out.println("So luong khong du! Vui long thu lai.");
-                    System.out.print("═╬═══► :");
-                    quantity = Integer.parseInt(scanner.nextLine());
-                    if (product.getQuantity() == 0)
-                        QContinueTToExist();
-                }
-                String productName = product.getProductName();
-                double total = quantity * price;
-                OrderItem orderItem = new OrderItem(id, price, quantity, orderId, techsId, productName, total);
-                productService.updateQuantity(techsId, quantity);
-                return orderItem;
-            } catch (Exception e) {
-                System.out.println("khong dung! Vui long nhap lai.");
-            }
-        } while (true);
-    }
-
-    public boolean checkQuantityProduct(Product product, int quantity) {
-        if (quantity <= product.getQuantity())
-            return true;
-        return false;
-    }
-
-    public void showPaymentInfo(Order order) {
-        try {
-            System.out.println("\t\t\t\t┌───────────────────────────────────────────────────────────────────────────┐");
-            System.out.println("\t\t\t\t│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ HOA DON ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│");
-            System.out.println("\t\t\t\t├───────────────────────────┬───────────────────────────────────────────────┤");
-            System.out.printf("\t\t\t\t│\t%-20s\t %-25s %16s │\n", "Ten day du      :       │", order.getFullName(), "");
-            System.out.printf("\t\t\t\t│\t%-20s\t %-25s %16s │\n", "So dien thoai   :       │", order.getMobile(), "");
-            System.out.printf("\t\t\t\t│\t%-20s\t %-25s %16s │\n", "Dia chi         :       │", order.getAddress(), "");
-            System.out.printf("\t\t\t\t│\t%-20s\t %-25s %16s │\n", "Ngay tao        :       │", DateUtils.formatDate(order.getCreatedAt()), "");
-            System.out.println("\t\t\t\t├────┬───────────────────┬──┴──────────────────────────┬────────────────────┤");
-            System.out.printf("\t\t\t\t│%-4s│%-17s\t │%-28s │%-19s │\n", "STT", "Ten san pham", "So luong", "Gia");
-            System.out.println("\t\t\t\t├────┼───────────────────┼─────────────────────────────┼────────────────────┤");
-            List<OrderItem> orderItems = orderItemService.findAll();
-            double sum = 0;
-            int count = 0;
-            for (OrderItem orderItem1 : orderItems) {
-                if (orderItem1.getOrderId() == order.getId()) {
-                    sum += orderItem1.getTotal();
-                    count++;
-                    orderItem1.setGrandTotal(sum);
-                    orderItemService.update(orderItem1.getOrderId(), orderItem1.getPrice(), sum);
-                    System.out.printf("\t\t\t\t│ %1s  │  %-17s│\t %-25s │  %-18s│\n",
-                            count,
-                            orderItem1.getProductName(),
-                            orderItem1.getQuantity(),
-                            orderItem1.getPrice());
-                    System.out.println("\t\t\t\t├────┴───────────────────┴─────────────────────────────┴────────────────────┤");
-                }
-            }
-            System.out.println("\t\t\t\t├────┴───────────────────┴─────────────────────────────┴────────────────────┤");
-            System.out.printf("\t\t\t\t│                                                  Tong: %17s  │\n",InstantUtils.doubleToVND(sum));
-            System.out.println("\t\t\t\t└───────────────────────────────────────────────────────────────────────────┘\n\n");
-            QContinueTToExist();
-        } catch (Exception e) {
-            System.out.println("Nhap khong dung! Vui long nhap lai.");
-        }
-    }
-
-    public void showListOrder() {
-        List<Order> orders = orderService.findAll();
-        List<OrderItem> orderItems = orderItemService.findAll();
-        OrderItem newOrderItem = new OrderItem();
-        List<OrderItem> orderItemList = new ArrayList<>();
-        try {
-            int count = 0;
-            double printTotal = 0;
-            double total = 0;
-            double sum = 0;
-            double grandTotal = 0;
-            System.out.println("──────────────────────────────────────────────────────────── DANH SACH HOA DON ─────────────────────────────────────────────────────────────────────");
-            for (Order order : orders) {
-                for (OrderItem orderItem : orderItems) {
-                    if (orderItem.getOrderId() == order.getId()) {
-                        newOrderItem = orderItem;
-                        orderItemList.add(newOrderItem);
-                        double price = orderItem.getPrice();
-                        int quantity = orderItem.getQuantity();
-                        sum = price * quantity;
-                        grandTotal += sum;
-                    }
-                }
-                newOrderItem.setGrandTotal(grandTotal);
-                orderItemService.update(newOrderItem.getOrderId(), newOrderItem.getPrice(), grandTotal);
-                System.out.println("\t┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
-                System.out.printf("\t│\t%-20s%-20s%-30s%-20s%-25s%-25s│\n", "Id            : ", order.getId(), " ", "Ten khach hang :", order.getFullName(), "");
-                System.out.printf("\t│\t%-20s%-20s%-30s%-20s%-25s%-25s│\n", "So dien thoai : ", order.getMobile(), " ", "Dia chi        : ", order.getAddress(), "");
-                System.out.println("\t├───────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤");
-                System.out.printf("\t│\t%-1s │%-19s%-20s%-10s%-15s%-15s%-10s%-10s%-15s %-15s %-1s│\n", "STT", "", "Ten san pham", "", "", "So luong", "", "Gia", "  ", "Tong tien san pham", "");
-                System.out.println("\t├───────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤");
-
-                for (OrderItem orderItem : orderItemList) {
-                    count++;
-                    total = orderItem.getPrice() * orderItem.getQuantity();
-                    System.out.printf("\t│\t%-3d │%-1s%-20s%-20s%-10s%-15s%-15d%-10s%-18s%-11s%14s\t│\n", count, "", "", orderItem.getProductName(), " ", "", orderItem.getQuantity()
-                            , "", orderItem.getPrice()
-                            , "", InstantUtils.doubleToVND(total));
-                }
-                orderItemList.clear();
-                printTotal += grandTotal;
-                System.out.printf("\t└───────┴──────────────────────────────────────────────────────────────────────────────────────────────────── Tong don:  %15s ───────┘\n\n\n", InstantUtils.doubleToVND(grandTotal));
-                sum = 0;
-                grandTotal = 0;
-                count = 0;
-            }
-            System.out.printf("\t\t\t\t\t\t\t┌────────────────── Tong doanh thu: %15s ────────────────────────┐\n", InstantUtils.doubleToVND(printTotal));
-            System.out.println("\t\t\t\t\t\t\t└───────────────────────────────────────────────────────────────────────────┘ \n");
-            QContinueTToExist();
-        } catch (Exception e) {
-            System.out.println("Khong dung! Vui long nhap lai.");
-        }
-    }
-
-    public void QContinueTToExist() {
-        boolean is = true;
-        do {
-            System.out.println("Nhan 'q' de quay lai \t|\t 't' de thoat chuong trinh");
-            System.out.print("═╬═══► :");
+            checkOrderView = false;
+            bannerApp.menuBanner("OrderView");
+            List<Order> orderList = orderService.getAllOrderList();
             String choice = scanner.nextLine();
             switch (choice) {
-                case "q":
-                    OrderViewLauncher orderViewlauncher = new OrderViewLauncher();
-                    orderViewlauncher.launch();
+                case "1":
+                    showDetailOrderView(orderList);
+                    checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "t":
-                    System.exit(0);
+                case "2":
+                    createOrderView(user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
                     break;
+                case "3":
+                    updateOrderView(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "4":
+                    searchOrderByStatusView(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "5":
+                    searchOrderByDurationTime(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "6":
+                    printingAllOrders(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "7":
+                    removeOrder(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "8":
+                    orderService.getTotalProfit(orderList,user);
+                    checkOrderView = InitApp.checkContinueActionOrder();
+                    break;
+                case "0":
+                    System.exit(5);
+                case "r":
+                    productAdminView.menuAdminView(user);
                 default:
-                    System.out.println("Nhap khong dung chuc nang! Vui long nhap lai.");
-                    is = false;
+                    checkOrderView = true;
                     break;
             }
-        } while (!is);
+        }
+        while (checkOrderView);
     }
+
+    private void removeOrder(List<Order> list,User user) throws Exception {
+
+        String alert = scanner.nextLine();
+        if (alert.toLowerCase().equals("y")) {
+            System.out.println("Enter ID Order you want to remove");
+            long idRemove = Long.parseLong(scanner.nextLine());
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getId() == idRemove) {
+                    list.remove(i);
+                }
+            }
+            orderService.saveOrderData(list);
+
+        }if (alert.toLowerCase().equals("n")) {
+            orderMenuView(user);
+        }
+
+    }
+
+    public void searchOrderByDurationTime(List<Order> list,User user) throws Exception {
+        boolean checkContinue;
+        do {
+            checkContinue = false;
+            BannerApp.menuBanner("Search-Order-ByDurationTime");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    List<Order> list1 = orderService.searchOrderByDate(list);
+                    System.out.printf("%10s %20s %15s %20s", "ID Product", "Ordered Date", "Total", "OrderItems");
+                    System.out.println();
+                    for (Order order1 : list1) {
+                        System.out.println(order1);
+                    }
+                    checkContinue = InitApp.checkContinueSearchOrderByDurationTime();
+                    break;
+                case "2":
+                    List<Order> list2 = orderService.searchOrderByMonth(list);
+                    System.out.printf("%10s %20s %15s %20s", "ID Product", "Ordered Date", "Total", "OrderItems");
+                    System.out.println();
+                    for (Order order1 : list2) {
+                        System.out.println(order1);
+                    }
+                    checkContinue = InitApp.checkContinueSearchOrderByDurationTime();
+                    break;
+                case "r":
+                    orderMenuView(user);
+                default:
+                    System.out.println("Error Value. Type again");
+                    checkContinue = true;
+            }
+        }
+        while (checkContinue);
+    }
+
+    private void searchOrderByStatusView(List<Order> list,User user) throws Exception {
+        boolean checkOrderStatus;
+        do {
+            checkOrderStatus = false;
+            BannerApp.menuBanner("Search-Order-Status-View");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    List<Order> listOrderedResult = orderService.searchOrderByStatus(list, "Pending");
+                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
+                    printingAllOrders(listOrderedResult,user);
+                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
+                    break;
+                case "2":
+                    List<Order> listOrderedResult1 = orderService.searchOrderByStatus(list, "Processing");
+                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
+                    printingAllOrders(listOrderedResult1,user);
+                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
+                    break;
+                case "3":
+                    List<Order> listOrderedResult2 = orderService.searchOrderByStatus(list, "Paid");
+                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
+                    printingAllOrders(listOrderedResult2,user);
+                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
+                    break;
+                case "4":
+                    List<Order> listOrderedResult3 = orderService.searchOrderByStatus(list, "NotPaid");
+                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
+                    printingAllOrders(listOrderedResult3,user);
+                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
+                    break;
+                case "5":
+                    List<Order> listOrderedResult4 = orderService.searchOrderByStatus(list, "Canceled");
+                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
+                    printingAllOrders(listOrderedResult4,user);
+                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
+                    break;
+                case "r":
+                    orderMenuView(user);
+            }
+        }
+        while (checkOrderStatus);
+    }
+
+    public void printingAllOrders(List<Order> orderList, User user) {
+        System.out.printf("%14s %20s %11s %11s %35s %39s %21s %15s %10s", "ID Order", "Ordered Date","Total","Status", "OrderItems","ID User","NameUser","Phone Number","Address");
+        System.out.println();
+        for (Order order : orderList) {
+            for (OrderItem orderItem : order.getOrderItem()) {
+                Product product = productService.findProductByID(orderItem.getIdProduct());
+                String temp = String.valueOf(order.getStatus());
+                System.out.printf("║%13s║ %19s║ %10s║ %10s║ %17s║ %23s║ %10s║ %5s║ %10s║ %20s║ %15s║ %10s║",order.getId(), DateUtils.convertDateToString(order.getDateOrder()),
+                        getTotal(order),temp,orderItem.getId(),product.getNameProduct(), SupportApp.formatNumber(orderItem.getPrice())
+                        ,orderItem.getQuantity(),order.getIdUser(),order.getNameUser(),user.getMobile(),user.getAddress());
+                System.out.println();
+            }
+        }
+    }
+
+
+
+    public void updateOrderView(List<Order> orderList,User user) throws Exception {
+        System.out.print("■ Enter ID Order you want to update:");
+        long id = Long.parseLong(scanner.nextLine());
+        Order order1 = orderService.getOrderByID(id, orderList);
+        if (order1 != null) {
+            if (order1.getOrderItem().size() > 0) {
+                boolean checkUpdateOrderView;
+                do {
+                    checkUpdateOrderView = false;
+                    bannerApp.menuBanner("Update-Order-View");
+                    String choice = scanner.nextLine();
+                    switch (choice) {
+                        case "1":
+                            System.out.print("■ Enter date you want to update:");
+                            String date = scanner.nextLine();
+                            order1.setDateOrder(DateUtils.convertStringToDate(date));
+                            orderService.saveOrderData(orderList);
+                            checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
+                            break;
+                        case "2":
+                            orderItemService.showOrderItem(order1);
+                            List<OrderItem> orderItems = orderItemService.getAllOrderItems();
+                            System.out.println("■ Enter ID OrderItem you want to update:");
+                            long idOrderItem = Long.parseLong(scanner.nextLine());
+                            OrderItem orderItem = orderItemService.findOrderItemByID(idOrderItem, orderItems);
+                            System.out.print("■ Enter ID product you want to update:");
+                            long idProduct = Long.parseLong(scanner.nextLine());
+                            System.out.print("■ Enter quantity orderItem you want to update:");
+                            int quantity = Integer.parseInt(scanner.nextLine());
+                            System.out.print("■ Enter Price orderItem you want to update:");
+                            double price = Double.parseDouble(scanner.nextLine());
+                            orderItem.setQuantity(quantity);
+                            orderItem.setIdProduct(idProduct);
+                            orderItem.setPrice(price);
+                            orderItemService.saveOrderItemData(orderItems);
+                            checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
+                            break;
+                        case "3":
+                            System.out.println("Enter STATUS you want to update");
+                            String status = scanner.nextLine();
+                            Status choicedStatus = Status.findStatusByName(status);
+                            order1.setStatus(choicedStatus);
+                            orderService.saveOrderData(orderList);
+                            checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
+                            break;
+                        case "r":
+                            orderMenuView(user);
+                        default:
+                            System.out.println("Error value! Type again");
+                            checkUpdateOrderView = true;
+                    }
+                }
+                while (checkUpdateOrderView);
+            } else {
+                System.out.println("Size=0");
+                productService.printingAllProduct();
+                long idProduct = checkIDProduct();
+                Product product = productService.findProductByID(idProduct);
+                int quantity = checkInputQuantity(order1, idProduct);
+                OrderItem orderItem;
+                if ((orderItem = checkProductExistinOrder(order1, product.getIdProduct())) != null) {
+                    orderItem.setQuantity(quantity + orderItem.getQuantity());
+                } else {
+                    OrderItem newOrderItem = new OrderItem(System.currentTimeMillis() / 100000, product.getIdProduct(), order1.getId(), quantity, product.getPrice());
+                    order1.addOrderItem(newOrderItem);
+                }
+                order1.setTotal(getTotal(order1));
+                showOrderItemsByOrder(order1,user);
+                orderItemService.addOrderItem(order1.getOrderItem());
+                orderService.saveOrderData(orderList);
+            }
+        } else System.out.println("Order is not exist");
+    }
+
+    public void createOrderView(User user) {
+        order = new Order();
+        order.setId(System.currentTimeMillis() / 1000000);
+        order.setDateOrder(new Date());
+        order.setStatus(status.Pending);
+        order.setIdUser(System.currentTimeMillis()/100000);
+        boolean checkCreateOrder;
+        do {
+            checkCreateOrder = true;
+            productService.printingAllProduct();
+            long idProduct = checkIDProduct();
+            Product product = productService.findProductByID(idProduct);
+            int quantity = checkInputQuantity(order, idProduct);
+            if (quantity == -1) {
+                continue;
+            }
+            OrderItem orderItem;
+            if ((orderItem = checkProductExistinOrder(order, product.getIdProduct())) != null) {
+                orderItem.setQuantity(quantity + orderItem.getQuantity());
+            } else {
+                OrderItem newOrderItem = new OrderItem(System.currentTimeMillis() / 100000, product.getIdProduct(), order.getId(), quantity, product.getPrice());
+                order.addOrderItem(newOrderItem);
+            }
+            showOrderItemsByOrder(order,user);
+            checkCreateOrder = InitApp.checkContinueAddOrder();
+        }
+        while (checkCreateOrder);
+        order.setTotal(getTotal(order));
+        order.setNameUser(user.getFullname());
+        order.setAddressUser(user.getAddress());
+        order.setPhoneNumber(user.getMobile());
+        orderItemService.addOrderItem(order.getOrderItem());
+        orderService.addOrder(order);
+    }
+
+    public int checkInputQuantity(Order order, long idProduct) {
+        boolean checkInputQuantityAction = false;
+        do {
+            checkInputQuantityAction = false;
+            System.out.print("■ Enter quantity you want to add:");
+            int quantity = Integer.parseInt(scanner.nextLine());
+            OrderItem orderItem = checkProductExistinOrder(order, idProduct);
+            if (orderItem != null) {
+                if (productService.checkRemainQuantityProduct(idProduct, quantity + orderItem.getQuantity())) {
+                    return quantity;
+                }
+            } else {
+                if (productService.checkRemainQuantityProduct(idProduct, quantity)) {
+                    return quantity;
+                }
+            }
+            Product product = productService.findProductByID(idProduct);
+            System.out.printf("Store is: %d. Your order is run out of store", product.getQuantity());
+            checkInputQuantityAction = InitApp.checkContinueActionMenu();
+        }
+        while (checkInputQuantityAction);
+        return -1;
+    }
+
+    public long checkIDProduct() {
+        boolean checkidproduct;
+        do {
+            checkidproduct = false;
+            System.out.print("■ Enter ID product you want to add:");
+            long id = Long.parseLong(scanner.nextLine());
+            int flag = 0;
+            for (Product product : productService.getAllProducts()) {
+                if (product.getIdProduct() == id) {
+                    return id;
+                } else {
+                    flag = -1;
+                }
+            }
+            if (flag == -1) {
+                System.out.println("Error Value! Type again");
+                checkidproduct = true;
+            }
+        }
+        while (checkidproduct);
+        return -1;
+    }
+
+    public OrderItem checkProductExistinOrder(Order order, long idProduct) {
+        for (OrderItem orderItem : order.getOrderItem()) {
+            if (orderItem.getIdProduct() == idProduct) {
+                return orderItem;
+            }
+        }
+        return null;
+    }
+
+    public void showDetailOrderView(List<Order> orderList) {
+        System.out.println("Enter ID Order that you want to show:");
+        System.out.print("■ Select:");
+        long idFindedOrder = Integer.parseInt(scanner.nextLine());
+        Order findedOrder = orderService.getOrderByID(idFindedOrder, orderList);
+        showDetailOrderViewByID(findedOrder);
+    }
+
+    public void showDetailOrderViewByID(Order order) {
+        System.out.println("╔══════════════════════════════════════YOUR BILL═══════════════════════════════════════════════╗");
+        System.out.println("\t" + "\t" + "Order ID: " + order.getId() + "\t" + "Created:" + DateUtils.convertDateToString(order.getDateOrder())+",User: " +order.getNameUser());
+        for (OrderItem orderItem : order.getOrderItem()) {
+            Product product = productService.findProductByID(orderItem.getIdProduct());
+            System.out.println(
+                    String.format("\t \t \t \t %-20s|%-15s|%-10s|%-10s", product.getNameProduct(), orderItem.getPrice(), orderItem.getQuantity(), orderItem.getQuantity() * orderItem.getPrice())
+            );
+        }
+        System.out.println("                        \t \t \t \t\t \t \tTotal: " + getTotal(order));
+        System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════╝");
+    }
+
+    public void showOrderItemsByOrder(Order order,User user) {
+        System.out.println("╔═════════════════════════════════════LIST PRODUCT THAT ORDERED═══════════════════════════════════════╗");
+        System.out.println("          User: "+user.getFullname()+"\tPhone Number:"+user.getMobile()+"\tAddress: "+user.getAddress());
+        for (OrderItem orderItem : order.getOrderItem()) {
+            Product product = productService.findProductByID(orderItem.getIdProduct());
+            System.out.println(String.format("\t \t \t \t %-20s|%-15s|%-10s|%-10s", product.getNameProduct(), orderItem.getPrice(), orderItem.getQuantity(), orderItem.getQuantity() * orderItem.getPrice()));
+        }
+        System.out.println("                        \t \t \t \t\t \t \tTotal: " + getTotal(order));
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+    }
+
+    public long getTotal(Order order) {
+        long total = 0;
+        for (OrderItem orderItem : order.getOrderItem()) {
+            total += orderItem.getPrice() * orderItem.getQuantity();
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        OrderService orderService1 = new OrderService();
+        OrderView test = new OrderView();
+
+    }
+
 }

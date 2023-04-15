@@ -1,20 +1,21 @@
 package com.codegym.model;
 
 public enum Role {
-    ADMIN("ADMIN"), USER("USER");
+    ADMIN("Admin") , USER("User");
     private String value;
-    Role(String value) {
+    Role (String value){
         this.value = value;
     }
-    public String getValue() {
-        return this.value;
-    }
-    public static Role parseRole(String value) {
-        Role[] values = values();
-        for(Role role: values) {
-            if(role.value.equals(value))
+    public static Role findRoleByString (String name){
+        for (Role role : values()) {
+            String temp = String.valueOf(role);
+            if (temp.equals(name)) {
                 return role;
+            }
         }
-        throw new IllegalArgumentException("invalid");
+        return null;
     }
+
+
+
 }

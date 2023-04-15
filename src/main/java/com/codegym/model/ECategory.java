@@ -1,27 +1,27 @@
 package com.codegym.model;
 
 public enum ECategory {
-BAG("1"),SHOES("2"),PERFUME("3");
-    private String value;
+    BAG(1),SHOES(2),PERFUME(3);
 
-    ECategory(String value) {
-        this.value = value;
+    public int idCategory;
+
+    ECategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
-    public String getValue() {
-        return value;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
-    public static boolean fromValue(String value) {
-        ECategory[] values = values();
-        for (ECategory type : values) {
-            if (type.value.equals(value))
-                return true;
+    public static ECategory findCategoryByID(long id){
+        for (ECategory category : ECategory.values()){
+            if (category.idCategory==id){
+                return category;
+            }
         }
-
-        return false;
+        return null;
     }
 }
