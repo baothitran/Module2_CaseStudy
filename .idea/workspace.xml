@@ -42,14 +42,6 @@
       <change afterPath="$PROJECT_DIR$/../MD2_CaseStudy/src/main/java/com/codegym/view/ProductAdminView.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../MD2_CaseStudy/src/main/java/com/codegym/view/ProductView.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../MD2_CaseStudy/src/main/java/com/codegym/view/UserView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorDecreasingByPrice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorIncreasingByPrice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/BannerApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/InitApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/SupportApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/ActionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrederService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_CaseStudy/src/main/java/com/codegym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_CaseStudy/src/main/java/com/codegym/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_Kiemtra/.idea/misc.xml" beforeDir="false" />
@@ -70,39 +62,35 @@
       <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhESC.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhESC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/StudentView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorByName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/comparator/ComparatorByPrice.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/order.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/order.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/user.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/ECategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/ECategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/feature/BannerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/BannerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/feature/SupportApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/SupportApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/IOrderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderItemService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/ProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/AppUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/DateUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/FileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/AdminView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/InputOption.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/MainLauncher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderViewLauncher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/ProductView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserMenuView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/UserView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginAdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginAdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginUserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/ManagerUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/ManagerUserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/ECategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/ECategory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/OrderItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/IOrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IOrderItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/IOrderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/IProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/OrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/OrderItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/utils/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/utils/DateUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/utils/FileUtils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,24 +130,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/BaoThi/Module2_CaseStudy&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "F:/Test3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.codegym.Main" />
@@ -198,7 +186,8 @@
       <workItem from="1681433905677" duration="2496000" />
       <workItem from="1681459183383" duration="5648000" />
       <workItem from="1681477192069" duration="3114000" />
-      <workItem from="1681564636288" duration="1290000" />
+      <workItem from="1681564636288" duration="4727000" />
+      <workItem from="1681574102693" duration="9122000" />
     </task>
     <servers />
   </component>

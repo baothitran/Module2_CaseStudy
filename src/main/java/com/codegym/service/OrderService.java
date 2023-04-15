@@ -25,7 +25,7 @@ public class OrderService implements IOrderItemService {
         fileService = new FileUtils();
     }
 
-    private String filePath = "F:\\BaoThi\\MD2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\order.csv";
+    private String filePath = "F:\\BaoThi\\Module2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\order.csv";
     public List<Order> getAllOrderList (){
         List<String> orderLines = fileService.readFile(filePath);
         List<Order> orderList = new ArrayList<>();

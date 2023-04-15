@@ -10,8 +10,8 @@ public class SupportApp {
     public static String retryString() {
         String result;
         while ((result = scanner.nextLine()).isEmpty()) {
-            System.out.printf("Dont type Space \n");
-            System.out.print("►►►►►► Type again: ");
+            System.out.printf("Không được để trống \n");
+            System.out.print("Mời nhập lại: ");
         }
         return result;
     }
@@ -22,12 +22,12 @@ public class SupportApp {
             try {
                 option = Integer.parseInt(scanner.nextLine());
                 if (option > max || option < min) {
-                    System.out.println("ERROR VALUE PLEASE TYPE VALUE " + min + " TO " + max );
+                    System.out.println("Nhập sai ! Vui lòng nhập từ " + min + " đến " + max );
                     continue;
                 }
                 break;
             } catch (Exception ex) {
-                System.out.println("ERROR VALUE PLEASE TYPE VALUE ");
+                System.out.println("Lỗi! Vui lòng nhập lại:  ");
             }
         } while (true);
         return option;

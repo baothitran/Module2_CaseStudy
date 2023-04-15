@@ -10,7 +10,7 @@ import java.util.List;
 public class OrderItemService implements IOrderItemService {
     FileUtils fileService;
     Order order = new Order();
-    private final String filePath = "F:\\BaoThi\\MD2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\orderitem.csv";
+    private final String filePath = "F:\\BaoThi\\Module2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\orderitem.csv";
     public OrderItemService(){
         fileService = new FileUtils();
     }

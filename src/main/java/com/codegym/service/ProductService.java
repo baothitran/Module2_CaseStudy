@@ -23,7 +23,7 @@ public class ProductService implements IProductServive {
     public FileUtils fileService;
     public BannerApp bannerApp = new BannerApp();
     public static ProductView productView = new ProductView();
-    private final String filePath = "F:\\BaoThi\\MD2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\product.csv";
+    private final String filePath = "F:\\BaoThi\\Module2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\product.csv";
 
     public ProductService() {
         fileService = new FileUtils();
@@ -78,7 +78,6 @@ public class ProductService implements IProductServive {
         fileService.writeFile(filePath,productLines);
     }
 
-//    Tìm product theo ID product => xây dựng hàm update Product, update product đó và ghi file
 
     public void updateProduct (Product product,long idProduct){
         List<Product> productList = getAllProducts();
@@ -105,12 +104,12 @@ public class ProductService implements IProductServive {
         boolean checkContinueAction;
         do {
             checkContinueAction = true;
-            System.out.print("【1】ADD NAME PRODUCT");
+            System.out.print("【1】Thêm tên sản phẩm");
             nameProduct = scanner.nextLine();
             if (ValidateUtils.validateProductName(ValidateUtils.removeAccent(nameProduct))){
                 checkContinueAction = false;
             }
-            else System.out.println("The name of product you entered DO NOT MATCH - please try again.");
+            else System.out.println("Tên sản phẩm không đúng cú pháp! Vui lòng nhập lại");
         }
         while (checkContinueAction);
         return nameProduct;
@@ -131,7 +130,7 @@ public class ProductService implements IProductServive {
             checkInputPrice = false;
             price = Long.parseLong(scanner.nextLine());
             if (price<0||price>1000000){
-                System.out.println("Price must be less than 1000000 and greater than 0");
+                System.out.println("Giá tiền phải nhỏ hơn 1000000 và lớn hơn 0");
                 checkInputPrice = true;
             }
         }
@@ -196,7 +195,7 @@ public class ProductService implements IProductServive {
                 case 0:
                     break;
                 default:
-                    System.out.println("Error value! Type again");
+                    System.out.println("Lỗi! Vui lòng nhập lại:");
                     checkSortByPrice = true;
                     break;
             }

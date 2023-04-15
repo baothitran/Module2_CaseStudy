@@ -70,7 +70,7 @@ public class OrderItem {
     @Override
     public String toString() {
         Product product = productService.findProductByID(this.idProduct);
-        return String.format("%10s %15s %20s %10s %10s", this.id, this.idOrder, product.getNameProduct(), this.price, this.quantity);
+        return String.format("%10s %12s %53s %17s %15s", this.id, this.idOrder, product.getNameProduct(), this.price, this.quantity);
 
     }
 

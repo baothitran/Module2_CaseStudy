@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class LoginAdminView {
     static LoginView loginView = new LoginView();
-    ProductView productView = new ProductView();
 
     public  static Scanner scanner = new Scanner(System.in);
     UserService userService = new UserService();
@@ -20,13 +19,13 @@ public class LoginAdminView {
         do {
             checkLoginAdmin = false;
             System.out.println("╔══════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                           LOGIN ADMIN                                                      ");
-            System.out.println("                                       【1】. ENTER USERNAME                                                ");
-            System.out.println("                                       【2】. ENTER PASSWORD                                                ");
+            System.out.println("                                           ĐĂNG NHẬP                                                      ");
+            System.out.println("                                       【1】. Tên tài khoản                                                ");
+            System.out.println("                                       【2】. Mật khẩu                                                ");
             System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.println("Enter Username:");
+            System.out.println("Nhập tên tài khoản:");
             String username = InitApp.isNotEmpty();
-            System.out.println("Enter Password:");
+            System.out.println("Nhập mật khẩu:");
             String password = InitApp.isNotEmpty();
             if (userService.adminLogin(username, password) != null) {
                 User admin = userService.adminLogin(username, password);
@@ -35,7 +34,7 @@ public class LoginAdminView {
                 checkLoginAdmin = false;
             }
             else {
-                System.out.println("Your account is NOT MATCH. Please type again!");
+                System.out.println("Tài khoản không đúng! Vui lòng nhập lại");
                 checkLoginAdmin = retryLogin();
             }
         }
@@ -45,9 +44,9 @@ public class LoginAdminView {
     public static boolean retryLogin () throws Exception {
         do {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                                               【1】. LOGIN AGAIN                                                 ║");
-            System.out.println("║                                               【2】. RETURN                                                      ║");
-            System.out.println("║                                               【0】. EXIT                                                        ║");
+            System.out.println("║                                               【1】. Đăng nhập lại                                                 ║");
+            System.out.println("║                                               【2】. Trở về                                                      ║");
+            System.out.println("║                                               【0】. Thoát                                                        ║");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("■ Select:");
             int choiceRetryLogin = Integer.parseInt(scanner.nextLine());
@@ -60,7 +59,7 @@ public class LoginAdminView {
                 case 0:
                     System.exit(5);
                 default:
-                    System.out.println("Error value! Please type again");
+                    System.out.println("Lỗi! Vui lòng nhập lại");
             }
         }
         while (true);

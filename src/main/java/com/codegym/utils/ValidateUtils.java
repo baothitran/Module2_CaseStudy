@@ -24,18 +24,22 @@ public class ValidateUtils {
         return Pattern.compile(USERNAME_PATTERN).matcher(password).matches();
     }
 
-    public static final String USERNAME_PATTERN = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$";
+    public static final String USERNAME_PATTERN = "^[a-zA-Z0-9]{3,9}$";
     public static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-_!@#&()[{}]:;',?/*~$^+=<>\\.]).{8,20}$";
 
     public static boolean isNameValid(String name) {
         return Pattern.compile(NAME_REGEX).matcher(name).matches();
     }
+    public static boolean isAddressValid(String add) {
+        return Pattern.compile(ADD_REGEX).matcher(add).matches();
+    }
 
-    public static final String NAME_REGEX = "^([A-Z0-9ÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬĐÈẺẼÉẸÊỀỂỄẾỆÌỈĨÍỊÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢÙỦŨÚỤƯỪỬỮỨỰỲỶỸÝỴ][a-z0-9àảãáạăằẳẵắặâầẩẫấậđèẻẽéẹêềểễếệiìỉĩíịòỏõóọôồổỗốộơờởỡớợùủũúụỤưừửữứựỳỷỹýỵ]{0,6} ?)*$";
+    public static final String NAME_REGEX = "^([A-ZÀ-ỹ][a-zÀ-ỹ]*[ ]?)+$";
 
     public static final String PHONE_REGEX = "^[0][1-9][0-9]{8,9}$";
 
     public static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    public static final String ADD_REGEX = "^([^. ][.]*[ ]?)+$";
 
     public static boolean isPhoneValid(String number) {
         return Pattern.compile(PHONE_REGEX).matcher(number).matches();

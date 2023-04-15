@@ -24,7 +24,7 @@ public class LoginView {
                 case 3:
                     System.exit(5);
                 default:
-                    System.out.println("Wrong Value! Please type again!");
+                    System.out.println("Lỗi! Vui lòng nhập lại");
                     checkLoginMenu = true;
             }
         }

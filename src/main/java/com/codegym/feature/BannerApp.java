@@ -4,157 +4,149 @@ public class BannerApp {
     public static void menuBanner(String option) {
         if (option.equals("Product-ViewMenu")) {
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                         WELCOME PRODUCT MENU                                            ");
-            System.out.println("                    【1】ADD PRODUCT                         【4】SEARCH PRODUCT                           ");
-            System.out.println("                    【2】EDIT PRODUCT                        【5】SORT PRODUCT                             ");
-            System.out.println("                    【3】REMOVE PRODUCT                      【6】PRINTING LIST PRODUCT                    ");
-            System.out.println("                    【0】EXIT                                【R】Return AdminView                         ");
+            System.out.println("                                          QUẢN LÝ SẢN PHẨM                                            ");
+            System.out.println("                    【1】Thêm sản phẩm                         【4】Tìm kiếm sản phẩm                           ");
+            System.out.println("                    【2】Cập nhật sản phẩm                     【5】Sắp xếp sản phẩm                             ");
+            System.out.println("                    【3】Xoá sản phẩm                          【6】Hiển thị danh sách sản phẩm                    ");
+            System.out.println("                    【0】Thoát                                 【R】Trở về                         ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Sort-Product-Menu")) {
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                SORTING PRODUCT                                                     ");
-            System.out.println("                         【1】SORTING PRODUCT BY PRICE                                           ");
-            System.out.println("                         【R】Return                                                  ");
+            System.out.println("                                SẮP XẾP SẢN PHẨM                                                      ");
+            System.out.println("                         【1】Sắp xếp theo giá                                           ");
+            System.out.println("                         【R】Trở về                                                  ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Searching-Product")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                                SEARCHING PRODUCT                                                     ");
-            System.out.println("                         【1】SEARCHING PRODUCT BY ID             【2】SEARCHING PRODUCT BY NAME                              ");
-            System.out.println("                         【R】Return                                                                                   ");
+            System.out.println("                                                TÌM KIẾM SẢN PHẨM                                                     ");
+            System.out.println("                         【1】Tìm kiếm theo ID sản phẩm              【2】Tìm kiếm theo tên                              ");
+            System.out.println("                         【R】Trở về                                                                                   ");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Product-Service")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                                ADD PRODUCT MENU                                                 ");
-            System.out.println("                         【1】ADD NAME PRODUCT                        【3】ADD QUANTITY PRODUCT                    ");
-            System.out.println("                         【2】ADD PRICE PRODUCT                       【4】ADD ID CATEGORY                         ");
+            System.out.println("                                                THÊM SẢN PHẨM                                                 ");
+            System.out.println("                         【1】Tên sản phẩm                        【3】Số lượng sản phẩm                    ");
+            System.out.println("                         【2】Giá sản phẩm                       【4】ID Danh mục sản phẩm                          ");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Update-product")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                                EDIT PRODUCT MENU                                                     ");
-            System.out.println("                         【1】EDIT NAME PRODUCT                          【3】EDIT PRICE PRODUCT                              ");
-            System.out.println("                         【2】EDIT QUANTITY PRODUCT                      【R】RETURN                                  ");
+            System.out.println("                                                CẬP NHẬT SẢN PHẨM                                                     ");
+            System.out.println("                         【1】Tên sản phẩm                          【3】Giá sản phẩm                              ");
+            System.out.println("                         【2】Số lượng sản phẩm                     【R】Trở về                                  ");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Sort-by-price")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                                SORTING PRODUCT BY PRICE                                                    ");
-            System.out.println("                         【1】Increasing                          【2】Decreasing                   ");
-            System.out.println("                         【R】Return                                                         ");
+            System.out.println("                                                SẮP XẾP SẢN PHẨM                                                    ");
+            System.out.println("                         【1】Theo thứ tự tăng dần                      【2】Theo thứ tự giảm dần                   ");
+            System.out.println("                         【R】Trở về                                                         ");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("OrderView")) {
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                     ORDER MENU VIEW                                        ");
-            System.out.println("                    【1】Show detail Order                  【2】Add new Order         ");
-            System.out.println("                    【3】Update Order                       【4】Search Order By Status  ");
-            System.out.println("                    【5】Search Order By Duration Time      【6】Show all order                ");
-            System.out.println("                    【7】Remove Order                       【8】Show Profit");
-            System.out.println("                    【0】EXIT                               【R】Return");
+            System.out.println("                                     QUẢN LÝ ĐƠN HÀNG                                        ");
+            System.out.println("              【1】Chi tiết đơn hàng                  【2】Thêm mới đơn hàng         ");
+            System.out.println("              【3】Chỉnh sửa đơn hàng                 【4】Tìm kiếm đơn hàng theo tình trạng  ");
+            System.out.println("              【5】Hiển thị tất cả đơn hàng           【6】Xoá đơn hàng                ");
+            System.out.println("              【7】Hiển thị doanh thu                 【0】Thoát ");
+            System.out.println("              【R】Trở về       ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Update-Order-View")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                                UPDATE ORDER VIEW                                                    ");
-            System.out.println("                         【1】Update date order                                【2】Update OrderItem                   ");
-            System.out.println("                         【3】Update Status Order                              【R】Return Menu Order                 ");
+            System.out.println("                                                CẬP NHẬT ĐƠN HÀNG                                                    ");
+            System.out.println("                         【1】Ngày đặt hàng                                【2】Trạng thái đơn hàng                   ");
+            System.out.println("                                                      【R】Trở về                 ");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Search-Order-Status-View")) {
             System.out.println("╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                        SEARCH ORDER BY STATUS VIEW                                                    ");
-            System.out.println("                         【1】Pending                                 【2】Processing                   ");
-            System.out.println("                         【3】Paid                                    【4】NotPaid                   ");
-            System.out.println("                         【5】Canceled                                【R】Return Menu Order                   ");
+            System.out.println("                                        TÌM KIẾM ĐƠN HÀNG BẰNG TÌNH TRẠNG                                                    ");
+            System.out.println("                         【1】Chờ xác nhận                                 【2】Đã thanh toán                   ");
+            System.out.println("                         【3】Chưa thanh toán                              【4】Đã huỷ                   ");
+            System.out.println("                         【R】Trở về                   ");
             System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.println("■ Select:");
-        }
-        if (option.equals("Search-Order-ByDurationTime")){
-            System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                         SEARCH ORDER BY DURATION TIME                                                    ");
-            System.out.println("                  【1】Search order by day                              【2】Search order by month                   ");
-            System.out.println("                  【R】Return order menu view                                               ");
-            System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("LoginView")){
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                           WELCOME LOGIN MENU                                         ");
-            System.out.println("                                        【1】LOGIN ADMIN ACCOUNT                                    ");
-            System.out.println("                                        【2】LOGIN USER ACCOUNT                                         ");
-            System.out.println("                                        【3】EXIT                                                   ");
+            System.out.println("                           CHÀO MỪNG ĐẾN VỚI THẾ GIỚI THỜI TRANG CAO CẤP                                        ");
+            System.out.println("                                        【1】Admin                                    ");
+            System.out.println("                                        【2】Khách hàng                                         ");
+            System.out.println("                                        【3】Thoát                                                   ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("➔ Select:");
         }
         if (option.equals("Admin-Menu-View")) {
             System.out.println("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
             System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-            System.out.println("                          WELCOME ADMIN MENU                          ");
-            System.out.println("                         【1】MANAGE PRODUCT                                        ");
-            System.out.println("                         【2】MANAGE ORDER                                       ");
-            System.out.println("                         【3】MANAGE USER                                     ");
-            System.out.println("          【0】EXIT                     【R】Return Login View ");
+            System.out.println("                          TRANG QUẢN LÝ                          ");
+            System.out.println("                       【1】Quản lý sản phẩm                                        ");
+            System.out.println("                       【2】Quản lý đơn hàng                                       ");
+            System.out.println("                       【3】Quản lý khách hàng                                     ");
+            System.out.println("            【0】Thoát                     【R】Trở về ");
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("set-role")) {
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                                       SET ROLE USER                                         ");
-            System.out.println("                                        【1】USER                                   ");
-            System.out.println("                                        【2】ADMIN                                         ");
+            System.out.println("                                   ĐẶT LẠI VAI TRÒ NGƯỜI DÙNG                                         ");
+            System.out.println("                                        【1】Khách hàng                                   ");
+            System.out.println("                                        【2】Admin                                         ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("List-User")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-            System.out.println("                            LIST OF USER                                ");
-            System.out.println("                         【1】SHOW ALL USER                                        ");
-            System.out.println("                         【2】ADD USER                                       ");
-            System.out.println("                         【3】UPDATE USER                                     ");
-            System.out.println("                         【4】REMOVE USER                                       ");
-            System.out.println("                         【5】RETURN MENU                                    ");
-            System.out.println("                         【0】EXIT "                              );
+            System.out.println("                            QUẢN LÝ KHÁCH HÀNG                                ");
+            System.out.println("                         【1】Hiển thị tất cả khách hàng                                        ");
+            System.out.println("                         【2】Thêm khách hàng                                       ");
+            System.out.println("                         【3】Chỉnh sửa thông tin khách hàng                                     ");
+            System.out.println("                         【4】Xoá khách hàng                                       ");
+            System.out.println("                         【R】Trở về                                    ");
+            System.out.println("                         【0】Thoát "                              );
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("Update-UserView")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-            System.out.println("                            UPDATE USER                     ");
-            System.out.println("                         【1】UPDATE NAME                                        ");
-            System.out.println("                         【2】UPDATE PHONENUMBER                                       ");
-            System.out.println("                         【3】UPDATE ADDRESS                                     ");
-            System.out.println("                         【4】UPDATE EMAIL                                       ");
-            System.out.println("                         【5】UPDATE ALL USER                                    ");
-            System.out.println("                         【6】RETURN MENU                                    ");
-            System.out.println("                         【0】EXIT        ");
+            System.out.println("                    CHỈNH SỬA THÔNG TIN KHÁCH HÀNG                     ");
+            System.out.println("                         【1】Tên                                        ");
+            System.out.println("                         【2】Số điện thoại                                       ");
+            System.out.println("                         【3】Địa chỉ                                     ");
+            System.out.println("                         【4】Email                                       ");
+            System.out.println("                         【5】Tất cả thông tin                                    ");
+            System.out.println("                         【6】Trở về                                    ");
+            System.out.println("                         【0】Thoát        ");
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("userView")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-            System.out.println("                            PROFILE PAGE                ");
-            System.out.println("        【1】SHOW ALL PRODUCT               【3】SORT PRODUCT                    ");
-            System.out.println("        【2】CREATE ORDER                   【4】SEARCH PRODUCT                   ");
-            System.out.println("        【0】EXIT                                 ");
+            System.out.println("                          TRANG NGƯỜI DÙNG                ");
+            System.out.println("      【1】Hiển thị tất cả sản phẩm       【3】Sắp xếp sản phẩm                    ");
+            System.out.println("      【2】Đặt hàng                       【4】Tìm kiếm sản phẩm                   ");
+            System.out.println("      【0】Thoát                                 ");
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }
         if (option.equals("profitMenu")) {
             System.out.println("╔═════════════════════════════════════════════════════════════════╗");
-            System.out.println("                            SHOW PROFIT                     ");
-            System.out.println("   【1】SHOW PROFIT BY DAY               【2】SHOW PROFIT BY MONTH                    ");
-            System.out.println("                            【R】Return                                           " );
+            System.out.println("                             DOANH THU                     ");
+            System.out.println("  【1】Doanh thu theo ngày               【2】Doanh thu theo tháng                    ");
+            System.out.println("                            【R】Trở về                                           " );
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("■ Select:");
         }

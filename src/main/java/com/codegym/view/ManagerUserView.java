@@ -26,38 +26,38 @@ public class ManagerUserView {
     }
 
     public void menuUser(User user) throws Exception {
-        int number;
+        boolean checkMenuUser;
         System.out.println("");
         BannerApp.menuBanner("List-User");
         do {
-
-            number = Integer.parseInt(scanner.nextLine());
+            checkMenuUser = false;
+            String choice = scanner.nextLine();
             List<User> userList = userService.showUserView();
-            switch (number) {
-                case 1:
+            switch (choice) {
+                case "1":
                     showAllUser();
                     menuUser(user);
                     break;
-                case 2:
+                case "2":
                     addUserView(userList);
                     menuUser(user);
                     break;
-                case 3:
+                case "3":
                     updateUser(user);
                     menuUser(user);
                     break;
-                case 4:
+                case "4":
                     removeUser(user);
                     menuUser(user);
                     break;
-                case 5:
+                case "r":
                     productAdminView.menuAdminView(user);
                     break;
-                case 0:
+                case "0":
                     System.exit(5);
                     break;
             }
-        } while (number != 0);
+        } while (checkMenuUser);
     }
 
     public void removeUser(User user) throws Exception {
@@ -122,7 +122,7 @@ public class ManagerUserView {
                 isRetry = option != 5 && isRetry;
 
             } catch (Exception e) {
-                System.out.println("Error! Type again");
+                System.out.println("Lỗi! Vui lòng nhập lại: ");
             }
         } while (isRetry);
     }
@@ -148,7 +148,7 @@ public class ManagerUserView {
             setRole(user);
             userService.addUser(user);
         } catch (Exception ex) {
-            System.out.println("TYPE AGAIN ");
+            System.out.println("Lỗi! Vui lòng nhập lại: ");
         }
     }
 
@@ -166,23 +166,23 @@ public class ManagerUserView {
                 user.setRole(Role.ADMIN);
                 break;
             default:
-                System.out.println("Error Value! Type again.");
+                System.out.println("Lỗi! Vui lòng nhập lại:");
                 setRole(user);
         }
     }
 
     public String inputEmail() {
-        System.out.print("ENTER EMAIL: ");
+        System.out.print("Nhập email: ");
         String email;
         do {
             if (!ValidateUtils.isEmailValid(email = scanner.nextLine())) {
-                System.out.println("YOUR IS MAIL IS NOT MATCH (ex: chauphuoc1996@gmail.com)");
-                System.out.print("ENTER EMAIL AGAIN: ");
+                System.out.println("Email không đúng cú pháp! Vui lòng nhập lại");
+                System.out.print("Nhập email: ");
                 continue;
             }
             if (userService.existsByEmail(email)) {
-                System.out.println("YOUR EMAIL IS EXIST, TYPE AGAIN");
-                System.out.print("TYPE EMAIL: ");
+                System.out.println("Email đã tồn tại! Vui lòng nhập lại");
+                System.out.print("Nhập email: ");
                 continue;
             }
             break;
@@ -192,12 +192,18 @@ public class ManagerUserView {
 
     private String inputAddress() {
         String address;
-        System.out.print("ENTER YOUR ADDRESS ");
+        System.out.print("Nhập địa chỉ:  ");
         address = scanner.nextLine();
         do {
+            if (!ValidateUtils.isAddressValid(address)) {
+                System.out.println("Địa chỉ không đúng! Vui lòng nhập lại");
+                System.out.print("Nhập địa chỉ: ");
+                address = scanner.nextLine();
+                continue;
+            }
             if (address.trim().isEmpty()) {
-                System.out.println("DONT TYPE SPACE");
-                System.out.print("TYPE AGAIN: ");
+                System.out.println("Vui lòng không để trống");
+                System.out.print("Nhập địa chỉ: ");
                 address = scanner.nextLine();
             }
         } while (address.trim().isEmpty());
@@ -207,18 +213,18 @@ public class ManagerUserView {
     public String inputPhone() {
         String phone;
         do {
-            System.out.print("ENTER YOUR PHONENUMBER: ");
+            System.out.print("Nhập số điện thoại: ");
             phone = scanner.nextLine();
             if (phone.isEmpty()) {
                 break;
             }
             if (!ValidateUtils.isPhoneValid(phone)) {
-                System.out.println("YOUR PHONENUMBER IS NOT MATCH (START IS 0 AND HAVE 10 NUMBERS) ");
+                System.out.println("Số điện thoại phải có 10 chữ số và bắt đầu bằng số 0 ");
                 continue;
             }
             if (userService.existsByPhone(phone)) {
-                System.out.println("THIS PHONENUMBER IS EXIST, TYPE AGAIN");
-                System.out.print("ENTER PHONENUMBER: ");
+                System.out.println("Số điện thoại đã tồn tại! Vui lòng nhập lại: ");
+                System.out.print("Nhập số điện thoại: ");
                 continue;
             }
             break;
@@ -227,18 +233,18 @@ public class ManagerUserView {
     }
 
     public String inputUsername() {
-        System.out.print("Username: ");
+        System.out.print("Nhập tên tài khoản: ");
         String username;
 
         do {
             if (!ValidateUtils.isUsernameValid(username = SupportApp.retryString())) {
-                System.out.println("YOUR USERNAME IS NOT MATCH (>7 charactors, excluding special characters)");
-                System.out.println("\"ENTER USERNAME: ");
+                System.out.println("Tên tài khoản không phù hợp (trên 3 ký tự và không chứa các ký tự đặc biệt)");
+                System.out.println("\"Nhập tên tài khoản: ");
                 continue;
             }
             if (userService.existsByUsername(username)) {
-                System.out.println("YOUR USERNAME IS EXIST, TYPE AGAIN");
-                System.out.println("ENTER USERNAME: ");
+                System.out.println("Tên tài khảon đã tồn tại! Vui lòng nhập lại");
+                System.out.println("Nhập tên tài khoản: ");
                 continue;
             }
             break;
@@ -247,21 +253,21 @@ public class ManagerUserView {
     }
 
     public String inputPassword(String name) {
-        System.out.print("PASSWORD " + name + ": ");
+        System.out.print("Mật khẩu " + name + ": ");
         String password;
         while (!ValidateUtils.isPasswordValid(password = scanner.nextLine())) {
-            System.out.println("PASSWORD MUST MINIMUM 8 CHARACTERS, INCLUDING 1 CAPITAL, 1 NUMBER, 1 SPECIAL CHARACTER");
-            System.out.print("TYPE PASSWORD AGAIN: ");
+            System.out.println("Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ viết hoa, 1 số, 1 ký tự đặc biệt");
+            System.out.print("Nhập mật khẩu: ");
         }
         return password;
     }
 
     public String inputFullName() {
-        System.out.print("ENTER FULLNAME: ");
+        System.out.print("Nhập tên: ");
         String fullName;
         while (!ValidateUtils.isNameValid(fullName = scanner.nextLine())) {
-            System.out.println("NAME IS NOT MATCH (THE FIRST LETTERS MUST BE CAPITALIZED)");
-            System.out.print("ENTER FULLNAME AGAIN: ");
+            System.out.println("Chữ cái đầu phải viết hoa");
+            System.out.print("Nhập tên: ");
         }
         return fullName;
     }
@@ -273,8 +279,8 @@ public class ManagerUserView {
             id = Long.parseLong(scanner.nextLine());
             boolean exist = userService.existById(id);
             if (!exist) {
-                System.out.println("ID is not exist");
-                System.out.println("1.Continue \t|\t 2. Return \t|\t 0. Exit");
+                System.out.println("ID không tồn tại");
+                System.out.println("1. Tiếp tục \t|\t 2. Trở về \t|\t 0. Thoát");
                 do {
                     String choice = scanner.nextLine();
                     switch (choice) {
@@ -287,7 +293,7 @@ public class ManagerUserView {
                         case "0":
                             System.exit(5);
                         default:
-                            System.out.println("Error Value! Type again!");
+                            System.out.println("Lỗi! Mời nhập lại: ");
                             break;
                     }
                 } while (true);
