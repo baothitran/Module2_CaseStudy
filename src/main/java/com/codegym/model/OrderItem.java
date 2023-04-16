@@ -4,6 +4,7 @@ import com.codegym.service.ProductService;
 
 public class OrderItem {
     ProductService productService = new ProductService();
+    Order order = new Order();
 
     private long id;
     private long idProduct;
@@ -41,7 +42,7 @@ public class OrderItem {
     }
 
     public long getIdOrder() {
-        return idOrder;
+        return this.idOrder;
     }
 
     public void setIdOrder(long idOrder) {

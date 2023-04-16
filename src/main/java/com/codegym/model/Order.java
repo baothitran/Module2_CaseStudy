@@ -11,6 +11,12 @@ public class Order {
     private long idUser;
     private String addressUser;
     private String phoneNumber;
+    private long id;
+    private Date dateOrder;
+    private double total;
+    private List<OrderItem> orderItems;
+
+    private Status status;
 
     public String getAddressUser() {
         return addressUser;
@@ -52,12 +58,7 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    private long id;
-    private Date dateOrder;
-    private double total;
-    private List<OrderItem> orderItems;
 
-    private Status status;
 
     public Order() {
         orderItems = new ArrayList<>();

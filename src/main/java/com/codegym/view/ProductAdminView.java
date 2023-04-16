@@ -20,20 +20,20 @@ public class ProductAdminView {
 
             check = false;
             BannerApp.menuBanner("Admin-Menu-View");
-            String choice = scanner.nextLine();
+            int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case "1":
+                case 1:
                     productView.mainMenuView(admin);
                     break;
-                case "2":
+                case 2:
                     orderView.orderMenuView(admin);
                     break;
-                case "3":
+                case 3:
                     managerUserView.menuUser(admin);
                     break;
-                case "0":
+                case 0:
                     System.exit(5);
-                case "r":
+                case 4:
                     loginView.login();
                 default:
                     System.out.println("Lỗi! Vui lòng nhập lại");

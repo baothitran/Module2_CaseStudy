@@ -35,39 +35,39 @@ public class OrderView {
             checkOrderView = false;
             bannerApp.menuBanner("OrderView");
             List<Order> orderList = orderService.getAllOrderList();
-            String choice = scanner.nextLine();
+            int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case "1":
+                case 1:
                     showDetailOrderView(orderList);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "2":
+                case 2:
                     createOrderView(user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "3":
+                case 3:
                     updateOrderView(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "4":
+                case 4:
                     searchOrderByStatusView(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "5":
+                case 5:
                     printingAllOrders(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "6":
+                case 6:
                     removeOrder(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "7":
+                case 7:
                     orderService.getTotalProfit(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-                case "0":
+                case 0:
                     System.exit(5);
-                case "r":
+                case 8:
                     productAdminView.menuAdminView(user);
                 default:
                     checkOrderView = true;
@@ -110,12 +110,6 @@ public class OrderView {
                     printingAllOrders(listOrderedResult,user);
                     checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
                     break;
-//                case "2":
-//                    List<Order> listOrderedResult1 = orderService.searchOrderByStatus(list, "Processing");
-//                    System.out.println("                                                   LIST OF ORDER IS PENDING                      ");
-//                    printingAllOrders(listOrderedResult1,user);
-//                    checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
-//                    break;
                 case "2":
                     List<Order> listOrderedResult2 = orderService.searchOrderByStatus(list, "Paid");
                     System.out.println("                                                   DANH SÁCH ĐƠN HÀNG ĐÃ THANH TOÁN                      ");
@@ -141,16 +135,17 @@ public class OrderView {
         while (checkOrderStatus);
     }
 
-    public void printingAllOrders(List<Order> orderList, User user) {
-        System.out.printf("%14s %20s %11s %11s %35s %39s %21s %15s %10s", "ID Order", "Ordered Date","Total","Status", "OrderItems","ID User","NameUser","Phone Number","Address");
+    public void printingAllOrders(List<Order> orderList,User user) {
+        System.out.printf("%7s %15s %10s %9s %52s %20s %15s %8s %12s", "ID", "Ngày đặt","Tổng","Trạng thái", "Sản phẩm đặt","ID Khách","Tên khách hàng","SĐT","Địa chỉ");
         System.out.println();
         for (Order order : orderList) {
-            for (OrderItem orderItem : order.getOrderItem()) {
+            List<OrderItem> orderItems = order.getOrderItems();
+            for (OrderItem orderItem : orderItems) {
                 Product product = productService.findProductByID(orderItem.getIdProduct());
                 String temp = String.valueOf(order.getStatus());
-                System.out.printf("║%13s║ %19s║ %10s║ %10s║ %17s║ %23s║ %10s║ %5s║ %10s║ %20s║ %15s║ %10s║",order.getId(), DateUtils.convertDateToString(order.getDateOrder()),
-                        getTotal(order),temp,orderItem.getId(),product.getNameProduct(), SupportApp.formatNumber(orderItem.getPrice())
-                        ,orderItem.getQuantity(),order.getIdUser(),order.getNameUser(),user.getMobile(),user.getAddress());
+                System.out.printf("║%8s║ %16s║ %6s║ %7s║ %52s║ %4s║ %3s║ %9s║ %12s║ %12s║ %10s║",order.getId(), DateUtils.convertDateToString(order.getDateOrder()),
+                        getTotal(order),temp,product.getNameProduct(), SupportApp.formatNumber(orderItem.getPrice())
+                        ,orderItem.getQuantity(),order.getIdUser(),order.getNameUser(),order.getPhoneNumber(),user.getAddress());
                 System.out.println();
             }
         }
@@ -159,7 +154,7 @@ public class OrderView {
 
 
     public void updateOrderView(List<Order> orderList,User user) throws Exception {
-        System.out.print("■ Enter ID Order you want to update:");
+        System.out.print("■ Nhập ID đơn hàng:");
         long id = Long.parseLong(scanner.nextLine());
         Order order1 = orderService.getOrderByID(id, orderList);
         if (order1 != null) {
@@ -177,24 +172,6 @@ public class OrderView {
                             orderService.saveOrderData(orderList);
                             checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
                             break;
-//                        case "2":
-//                            orderItemService.showOrderItem(order1);
-//                            List<OrderItem> orderItems = orderItemService.getAllOrderItems();
-//                            System.out.println("■ Enter ID OrderItem you want to update:");
-//                            long idOrderItem = Long.parseLong(scanner.nextLine());
-//                            OrderItem orderItem = orderItemService.findOrderItemByID(idOrderItem, orderItems);
-//                            System.out.println("■ Enter ID product you want to update:");
-//                            long idProduct = Long.parseLong(scanner.nextLine());
-//                            System.out.println("■ Enter quantity orderItem you want to update:");
-//                            int quantity = Integer.parseInt(scanner.nextLine());
-//                            System.out.println("■ Enter Price orderItem you want to update:");
-//                            double price = Double.parseDouble(scanner.nextLine());
-//                            orderItem.setQuantity(quantity);
-//                            orderItem.setIdProduct(idProduct);
-//                            orderItem.setPrice(price);
-//                            orderItemService.saveOrderItemData(orderItems);
-//                            checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
-//                            break;
                         case "2":
                             System.out.println("Nhập trạng thái đơn hàng: ");
                             String status = scanner.nextLine();

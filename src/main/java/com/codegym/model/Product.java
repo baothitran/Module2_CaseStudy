@@ -68,7 +68,7 @@ public class Product {
     @Override
     public String toString() {
         return
-                String.format("║%10s║ %20s║ %20s║ %10s║ %10s║",this.idProduct,this.nameProduct,this.price,this.quantity,this.category);
+                String.format("║%10s║ %53s║ %15s║ %10s║ %15s║",this.idProduct,this.nameProduct,this.price,this.quantity,this.category);
     }
     public String toData(){
         return String.format("%s,%s,%s,%s,%s",this.idProduct,this.nameProduct,this.quantity,this.price,category.getIdCategory());

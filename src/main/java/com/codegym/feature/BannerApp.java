@@ -8,7 +8,7 @@ public class BannerApp {
             System.out.println("                    【1】Thêm sản phẩm                         【4】Tìm kiếm sản phẩm                           ");
             System.out.println("                    【2】Cập nhật sản phẩm                     【5】Sắp xếp sản phẩm                             ");
             System.out.println("                    【3】Xoá sản phẩm                          【6】Hiển thị danh sách sản phẩm                    ");
-            System.out.println("                    【0】Thoát                                 【R】Trở về                         ");
+            System.out.println("                    【0】Thoát                                 【7】Trở về                         ");
             System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.println("➔ Chọn chức năng:");
         }
@@ -96,7 +96,7 @@ public class BannerApp {
             System.out.println("                       【1】Quản lý sản phẩm                                        ");
             System.out.println("                       【2】Quản lý đơn hàng                                       ");
             System.out.println("                       【3】Quản lý khách hàng                                     ");
-            System.out.println("            【0】Thoát                     【R】Trở về ");
+            System.out.println("            【0】Thoát                     【4】Trở về ");
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("➔ Chọn chức năng:");
         }

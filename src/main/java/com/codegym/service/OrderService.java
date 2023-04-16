@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class OrderService implements IOrderItemService {
+public class OrderService implements IOrderService {
     public static Scanner scanner = new Scanner(System.in);
     public static OrderView orderView = new OrderView();
 
@@ -29,6 +29,9 @@ public class OrderService implements IOrderItemService {
     public List<Order> getAllOrderList (){
         List<String> orderLines = fileService.readFile(filePath);
         List<Order> orderList = new ArrayList<>();
+
+
+
         for (String orderline : orderLines){
             String[] orderlines1 = orderline.split(",");
             long id = Long.parseLong(orderlines1[0]);
@@ -77,44 +80,44 @@ public class OrderService implements IOrderItemService {
         return orderListLines;
     }
 
-    public List<Order> convertListStringtoListOrder (List<String> list){
-        List<Order> orderList = new ArrayList<>();
-        for (String orderLine : list ){
-            String [] orderLines = orderLine.split(",");
-            long idOrder = Long.parseLong(orderLines[0]);
-            Date date = DateUtils.convertStringToDate(orderLines[1]);
-            double total = Double.parseDouble(orderLines[2]);
-            Status status = Status.findStatusByName(orderLines[3]);
-            Order newOrder = new Order(idOrder,date,total);
-            newOrder.setStatus(status);
-            orderList.add(newOrder);
-        }
-        return orderList;
-    }
+//    public List<Order> convertListStringtoListOrder (List<String> list){
+//        List<Order> orderList = new ArrayList<>();
+//        for (String orderLine : list ){
+//            String [] orderLines = orderLine.split(",");
+//            long idOrder = Long.parseLong(orderLines[0]);
+//            Date date = DateUtils.convertStringToDate(orderLines[1]);
+//            double total = Double.parseDouble(orderLines[2]);
+//            Status status = Status.findStatusByName(orderLines[3]);
+//            Order newOrder = new Order(idOrder,date,total);
+//            newOrder.setStatus(status);
+//            orderList.add(newOrder);
+//        }
+//        return orderList;
+//    }
 
-    public List<Order> searchOrderByDate (List<Order> list){
-        List<Order> orderList = new ArrayList<>();
-        System.out.println("Enter Date (dd-mm-yyyy)");
-        String sdate = scanner.nextLine();
-        for (Order order : list){
-            if (getDataByDate(DateUtils.convertDateToString(order.getDateOrder())).equals(sdate)){
-                orderList.add(order);
-            }
-        }
-        return orderList;
-    }
-
-    public List<Order> searchOrderByMonth (List<Order> list){
-        List<Order> orderList = new ArrayList<>();
-        System.out.println("Enter Month (mm)");
-        String sMonth = scanner.nextLine();
-        for (Order order : list){
-            if (getDataByMonth(DateUtils.convertDateToString(order.getDateOrder())).equals(sMonth)){
-                orderList.add(order);
-            }
-        }
-        return orderList;
-    }
+//    public List<Order> searchOrderByDate (List<Order> list){
+//        List<Order> orderList = new ArrayList<>();
+//        System.out.println("Enter Date (dd-mm-yyyy)");
+//        String sdate = scanner.nextLine();
+//        for (Order order : list){
+//            if (getDataByDate(DateUtils.convertDateToString(order.getDateOrder())).equals(sdate)){
+//                orderList.add(order);
+//            }
+//        }
+//        return orderList;
+//    }
+//
+//    public List<Order> searchOrderByMonth (List<Order> list){
+//        List<Order> orderList = new ArrayList<>();
+//        System.out.println("Enter Month (mm)");
+//        String sMonth = scanner.nextLine();
+//        for (Order order : list){
+//            if (getDataByMonth(DateUtils.convertDateToString(order.getDateOrder())).equals(sMonth)){
+//                orderList.add(order);
+//            }
+//        }
+//        return orderList;
+//    }
     public String getDataByDate(String date){
         date = date.trim();
         if (date.indexOf(" ")>=0){
@@ -151,7 +154,7 @@ public class OrderService implements IOrderItemService {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Nhập ngày bạn mốn xem (dd-mm-yyyy):");
+                    System.out.println("Nhập ngày bạn muốn xem (dd-mm-yyyy):");
                     double total1 = 0;
                     String day = scanner.nextLine();
                     List<Order> orderList1 = new ArrayList<>();

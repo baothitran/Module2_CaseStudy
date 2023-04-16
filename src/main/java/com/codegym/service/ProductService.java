@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class ProductService implements IProductServive {
     public static Scanner scanner = new Scanner(System.in);
-    public SupportApp eventApp = new SupportApp();
+
     public FileUtils fileService;
     public BannerApp bannerApp = new BannerApp();
     public static ProductView productView = new ProductView();

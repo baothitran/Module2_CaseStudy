@@ -18,9 +18,8 @@ import java.util.Scanner;
 public class UserService implements IUserService {
     final String Path = "F:\\BaoThi\\Module2_CaseStudy\\src\\main\\java\\com\\codegym\\data\\user.csv";
     FileUtils fileService = new FileUtils();
-    public OrderView orderView = new OrderView();
     private static UserService userService;
-    private OrderService orderService = new OrderService();
+
     public static ManagerUserView managerUserView = new ManagerUserView();
     static LoginUserView loginUserView = new LoginUserView();
     public static Scanner scanner = new Scanner(System.in);
@@ -200,14 +199,14 @@ public class UserService implements IUserService {
 
 
 
-    public void getOrderbyIDUser(User user) {
-        List<Order> orderListResult = new ArrayList<>();
-        List<Order> orders = orderService.getAllOrderList();
-        for (Order order : orders) {
-            if (order.getIdUser() == user.getID() && order.getStatus().equals(Status.Paid)) {
-                orderListResult.add(order);
-            }
-        }
-        orderView.printingAllOrders(orderListResult, user);
-    }
+//    public void getOrderbyIDUser(User user) {
+//        List<Order> orderListResult = new ArrayList<>();
+//        List<Order> orders = orderService.getAllOrderList();
+//        for (Order order : orders) {
+//            if (order.getIdUser() == user.getID() && order.getStatus().equals(Status.Paid)) {
+//                orderListResult.add(order);
+//            }
+//        }
+//        orderView.printingAllOrders(orderListResult, user);
+//    }
 }

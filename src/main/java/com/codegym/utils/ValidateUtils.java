@@ -24,7 +24,7 @@ public class ValidateUtils {
         return Pattern.compile(USERNAME_PATTERN).matcher(password).matches();
     }
 
-    public static final String USERNAME_PATTERN = "^[a-zA-Z0-9]{3,9}$";
+    public static final String USERNAME_PATTERN = "^[a-zA-Z0-9]{3,12}$";
     public static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-_!@#&()[{}]:;',?/*~$^+=<>\\.]).{8,20}$";
 
     public static boolean isNameValid(String name) {

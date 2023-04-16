@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class LoginUserView {
     public static Scanner scanner = new Scanner(System.in);
     static UserService userService = new UserService();
-    ProductView productView = new ProductView();
+
     static UserView userView = new UserView();
     public static LoginView loginView = new LoginView();
     public static String name;
@@ -48,7 +48,7 @@ public class LoginUserView {
             System.out.println("║                                               【2】. Trở về                                                      ║");
             System.out.println("║                                               【0】. Thoát                                                       ║");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.print("■ Select:");
+            System.out.println("➔ Chọn chức năng:");
             int choiceRetryLogin = Integer.parseInt(scanner.nextLine());
             switch (choiceRetryLogin){
                 case 1:
@@ -60,6 +60,7 @@ public class LoginUserView {
                     System.exit(5);
                 default:
                     System.out.println("Lỗi! Vui lòng nhập lại");
+                    break;
             }
         }
         while (true);

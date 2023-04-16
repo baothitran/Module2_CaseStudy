@@ -12,7 +12,7 @@ public class InitApp {
         return value;
     }
     public static boolean checkContinueActionMenu() {
-        System.out.println("Bạn có muốn tiếp tục không? Y/N");
+        System.out.println("Bạn có muốn tiếp tục thao tác quản lý không? Y/N");
         String choiceContinueAction = scanner.nextLine().trim().toUpperCase();;
         switch (choiceContinueAction){
             case "Y":
@@ -26,7 +26,7 @@ public class InitApp {
     }
 
     public static boolean checkContinueActionOrder (){
-        System.out.println("Bạn có muốn tếp tục thao tác với trang Đặt hàng không? Y/N");
+        System.out.println("Bạn có muốn tiếp tục thao tác quản lý không? Y/N");
         String choiceContinueActionOrder = scanner.nextLine().trim().toUpperCase();;
         switch (choiceContinueActionOrder){
             case "Y":
@@ -81,7 +81,7 @@ public class InitApp {
         }
     }
     public static boolean checkContinueAddOrder() {
-        System.out.println("Bạn có muốn tếp tục thêm đơn hàng không? Y/N");
+        System.out.println("Bạn có muốn tiếp tục thêm đơn hàng không? Y/N");
         String choiceContinueAction = scanner.nextLine().trim().toUpperCase();;
         switch (choiceContinueAction){
             case "Y":
@@ -122,7 +122,7 @@ public class InitApp {
         }
     }
     public static boolean checkContinueSearchOrderStatusMenu (){
-        System.out.println("Bạn có muốn tiê tục tra cứu đơn hàng không? Y/N");
+        System.out.println("Bạn có muốn tiếp tục tra cứu đơn hàng không? Y/N");
         String choice = scanner.nextLine().trim().toUpperCase();;
         switch (choice){
             case "Y":

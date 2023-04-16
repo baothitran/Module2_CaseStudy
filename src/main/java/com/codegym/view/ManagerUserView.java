@@ -30,29 +30,29 @@ public class ManagerUserView {
         BannerApp.menuBanner("List-User");
         do {
             checkMenuUser = false;
-            String choice = scanner.nextLine();
+            int choice = Integer.parseInt(scanner.nextLine());
             List<User> userList = userService.showUserView();
             switch (choice) {
-                case "1":
+                case 1:
                     showAllUser();
                     menuUser(user);
                     break;
-                case "2":
+                case 2:
                     addUserView(userList);
                     menuUser(user);
                     break;
-                case "3":
+                case 3:
                     updateUser(user);
                     menuUser(user);
                     break;
-                case "4":
+                case 4:
                     removeUser(user);
                     menuUser(user);
                     break;
-                case "r":
+                case 5:
                     productAdminView.menuAdminView(user);
                     break;
-                case "0":
+                case 0:
                     System.exit(5);
                     break;
             }
@@ -156,12 +156,12 @@ public class ManagerUserView {
     public void setRole(User user) {
         System.out.println("");
         BannerApp.menuBanner("set-role");
-        String option = scanner.nextLine();
+        int option = Integer.parseInt(scanner.nextLine());
         switch (option) {
-            case "1":
+            case 1:
                 user.setRole(Role.USER);
                 break;
-            case "2":
+            case 2:
                 user.setRole(Role.ADMIN);
                 break;
             default:
@@ -242,7 +242,7 @@ public class ManagerUserView {
                 continue;
             }
             if (userService.existsByUsername(username)) {
-                System.out.println("Tên tài khảon đã tồn tại! Vui lòng nhập lại");
+                System.out.println("Tên tài khoản đã tồn tại! Vui lòng nhập lại");
                 System.out.println("Nhập tên tài khoản: ");
                 continue;
             }

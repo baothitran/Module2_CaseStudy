@@ -29,16 +29,16 @@ public class OrderItemService implements IOrderItemService {
         }
         return orderItems;
     }
-
-    public OrderItem findOrderItemIDbyIDProduct (long id){
-        List<OrderItem> orderItems = getAllOrderItems();
-        for (OrderItem orderItem : orderItems){
-            if (orderItem.getIdProduct()==id){
-                return orderItem;
-            }
-        }
-        return null;
-    }
+//
+//    public OrderItem findOrderItemIDbyIDProduct (long id){
+//        List<OrderItem> orderItems = getAllOrderItems();
+//        for (OrderItem orderItem : orderItems){
+//            if (orderItem.getIdProduct()==id){
+//                return orderItem;
+//            }
+//        }
+//        return null;
+//    }
 
     public void addOrderItem (List<OrderItem> orderItem){
         List<OrderItem> orderItems = getAllOrderItems();
@@ -65,25 +65,25 @@ public class OrderItemService implements IOrderItemService {
         }
         return orderItemsResult;
     }
-
-    public OrderItem findOrderItemByID(long id,List<OrderItem> orderItems) {
-        for (OrderItem orderItem : orderItems){
-            if (orderItem.getId()==id){
-                return orderItem;
-            }
-        }
-        return null;
-    }
-
-    public void saveOrderItemData (List<OrderItem> orderItems){
-        List<String> orderItemLines = converListOrderItemToListString(orderItems);
-        fileService.writeFile(filePath,orderItemLines);
-    }
-
-    public void showOrderItem (Order order){
-        for (OrderItem orderItem : order.getOrderItem()){
-            System.out.println(orderItem);
-        }
-    }
+//
+//    public OrderItem findOrderItemByID(long id,List<OrderItem> orderItems) {
+//        for (OrderItem orderItem : orderItems){
+//            if (orderItem.getId()==id){
+//                return orderItem;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public void saveOrderItemData (List<OrderItem> orderItems){
+//        List<String> orderItemLines = converListOrderItemToListString(orderItems);
+//        fileService.writeFile(filePath,orderItemLines);
+//    }
+//
+//    public void showOrderItem (Order order){
+//        for (OrderItem orderItem : order.getOrderItem()){
+//            System.out.println(orderItem);
+//        }
+//    }
 
 }

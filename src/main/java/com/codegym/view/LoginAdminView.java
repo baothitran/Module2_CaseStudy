@@ -48,7 +48,7 @@ public class LoginAdminView {
             System.out.println("║                                               【2】. Trở về                                                      ║");
             System.out.println("║                                               【0】. Thoát                                                        ║");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-            System.out.print("■ Select:");
+            System.out.println("➔ Chọn chức năng:");
             int choiceRetryLogin = Integer.parseInt(scanner.nextLine());
             switch (choiceRetryLogin){
                 case 1:
@@ -60,6 +60,7 @@ public class LoginAdminView {
                     System.exit(5);
                 default:
                     System.out.println("Lỗi! Vui lòng nhập lại");
+                    break;
             }
         }
         while (true);

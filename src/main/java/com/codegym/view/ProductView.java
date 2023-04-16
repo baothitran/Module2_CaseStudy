@@ -24,36 +24,36 @@ public class ProductView {
         do {
             products = productService.getAllProducts();
             bannerApp.menuBanner("Product-ViewMenu");
-            String choiceMenuAction = scanner.nextLine();
+            int choiceMenuAction = Integer.parseInt( scanner.nextLine());
             switch (choiceMenuAction) {
-                case "1":
+                case 1:
                     addProductView();
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "2":
+                case 2:
                     updateProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "3":
+                case 3:
                     removeProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "4":
+                case 4:
                     searchProductView(user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "5":
+                case 5:
                     sortProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "6":
+                case 6:
                     showProductView(products);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
-                case "0":
+                case 0:
                     System.exit(5);
                     break;
-                case "r":
+                case 7:
                     productAdminView.menuAdminView(user);
                 default:
                     checkMenuAction = true;
@@ -164,7 +164,7 @@ public class ProductView {
                         System.out.println("■ Nhập ID sản phẩm:");
                         long idProduct = Long.parseLong(scanner.nextLine());
                         product = productService.findProductByID(idProduct);
-                        System.out.printf("%10s %20s %20s %10s %10s", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
+                        System.out.printf("%10s %47s %18s %16s %12s", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
                         System.out.println();
                         System.out.println(product);
                         break;
@@ -196,12 +196,12 @@ public class ProductView {
     }
 
     public void showProductView(List<Product> products) {
-        System.out.println("╔════════════════════════════════DANH SÁCH SẢN PHẨM══════════════════════════════════╗");
-        System.out.printf("║%10s║ %20s║ %20s║ %10s║ %10s║", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
+        System.out.println("╔═════════════════════════════════════════════════DANH SÁCH SẢN PHẨM════════════════════════════════════════════╗");
+        System.out.printf("║%10s║ %53s║ %15s║ %10s║ %15s║", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
         System.out.println();
         for (Product product : products) {
             System.out.println(product);
         }
-        System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 }
