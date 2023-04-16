@@ -62,22 +62,7 @@
       <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhESC.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/SortByDiemTrungBinhESC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MD2_Test/src/main/java/org/example/view/StudentView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/order.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/order.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/orderitem.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/product.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/data/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/data/user.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/feature/BannerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/feature/BannerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/utils/ValidateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/ManagerUserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/ManagerUserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/view/OrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/feature/BannerApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/feature/BannerApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/utils/ValidateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/utils/ValidateUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/view/ManagerUserView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/view/ManagerUserView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/codegym/view/OrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/codegym/view/OrderView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +111,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "F:/Test4",
+    "last_opened_file_path": "F:/BaoThi/Module2_CaseStudy",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -179,7 +164,8 @@
       <workItem from="1681564636288" duration="4727000" />
       <workItem from="1681574102693" duration="23611000" />
       <workItem from="1681645761519" duration="1704000" />
-      <workItem from="1681647566462" duration="22532000" />
+      <workItem from="1681647566462" duration="23186000" />
+      <workItem from="1681671961201" duration="1950000" />
     </task>
     <servers />
   </component>

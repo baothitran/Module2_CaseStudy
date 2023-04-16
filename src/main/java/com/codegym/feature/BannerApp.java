@@ -82,7 +82,7 @@ public class BannerApp {
         }
         if (option.equals("LoginView")){
             System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("                           CHÀO MỪNG ĐẾN VỚI THẾ GIỚI THỜI TRANG CAO CẤP                                        ");
+            System.out.println("                           CHÀO MỪNG ĐẾN VỚI CỬA HÀNG THỜI TRANG CAO CẤP                                        ");
             System.out.println("                                        【1】Admin                                    ");
             System.out.println("                                        【2】Khách hàng                                         ");
             System.out.println("                                        【3】Thoát                                                   ");
@@ -96,7 +96,7 @@ public class BannerApp {
             System.out.println("                       【1】Quản lý sản phẩm                                        ");
             System.out.println("                       【2】Quản lý đơn hàng                                       ");
             System.out.println("                       【3】Quản lý khách hàng                                     ");
-            System.out.println("            【0】Thoát                     【4】Trở về ");
+            System.out.println("             【4】Trở về                     【0】Thoát ");
             System.out.println("╚═════════════════════════════════════════════════════════════════╝");
             System.out.println("➔ Chọn chức năng:");
         }
