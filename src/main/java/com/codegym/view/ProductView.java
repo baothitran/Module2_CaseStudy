@@ -16,26 +16,26 @@ public class ProductView {
     static ProductService productService = new ProductService();
     static ProductAdminView productAdminView = new ProductAdminView();
 
-    BannerApp bannerApp= new BannerApp();
+    BannerApp bannerApp = new BannerApp();
 
-    public void mainMenuView (User user) throws Exception {
+    public void mainMenuView(User user) throws Exception {
         boolean checkMenuAction = false;
-        List<Product> products ;
+        List<Product> products;
         do {
             products = productService.getAllProducts();
             bannerApp.menuBanner("Product-ViewMenu");
             String choiceMenuAction = scanner.nextLine();
-            switch (choiceMenuAction){
+            switch (choiceMenuAction) {
                 case "1":
                     addProductView();
-                    checkMenuAction= InitApp.checkContinueActionMenu();
+                    checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
                 case "2":
-                    updateProductView(products,user);
+                    updateProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
                 case "3":
-                    removeProductView(products,user);
+                    removeProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
                 case "4":
@@ -43,11 +43,10 @@ public class ProductView {
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
                 case "5":
-                    sortProductView(products,user);
+                    sortProductView(products, user);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
                 case "6":
-//                    showProductPagination(products);
                     showProductView(products);
                     checkMenuAction = InitApp.checkContinueActionMenu();
                     break;
@@ -65,7 +64,7 @@ public class ProductView {
     }
 
     public void addProductView() {
-        Product product=new Product();
+        Product product = new Product();
         List<Product> productList = productService.getAllProducts();
         boolean checkAddProductMenu = false;
         do {
@@ -73,35 +72,33 @@ public class ProductView {
             try {
                 bannerApp.menuBanner("Product-Service");
                 System.out.println();
-                product.setIdProduct(System.currentTimeMillis()/100000);
+                product.setIdProduct(System.currentTimeMillis() / 100000);
                 String nameProduct = productService.inputProductName();
                 product.setNameProduct(nameProduct);
-                System.out.print("【2】ADD PRICE PRODUCT");
+                System.out.print("【2】Giá sản phẩm");
                 long priceProduct = Long.parseLong(scanner.nextLine());
                 product.setPrice(priceProduct);
-                System.out.print("【3】ADD QUANTITY PRODUCT");
+                System.out.print("【3】Số lượng sản phẩm");
                 int quantityProduct = Integer.parseInt(scanner.nextLine());
                 product.setQuantity(quantityProduct);
-                System.out.print("【4】ADD ID CATEGORY");
+                System.out.print("【4】ID Danh mục sản phẩm");
                 int idCategory = Integer.parseInt(scanner.nextLine());
                 product.setCategory(ECategory.findCategoryByID(idCategory));
                 checkAddProductMenu = false;
                 productService.addProduct(product);
-            }
-            catch (Exception e){
-                System.out.println("Error value!Type again!");
+            } catch (Exception e) {
+                System.out.println("Lỗi! Vui lòng nhập lại");
                 checkAddProductMenu = true;
             }
         }
         while (checkAddProductMenu);
     }
 
-    public void updateProductView(List<Product> products,User user) throws Exception {
+    public void updateProductView(List<Product> products, User user) throws Exception {
         Product product;
         boolean checkUpdateProduct = false;
-//        showProductPagination(products);
         showProductView(products);
-        System.out.println("■ Select ID Product you want to update:");
+        System.out.println("■ Nhập ID sản phẩm:");
         int choiceIDProduct = Integer.parseInt(scanner.nextLine());
         product = productService.findProductByID(choiceIDProduct);
         do {
@@ -129,11 +126,12 @@ public class ProductView {
                     checkUpdateProduct = true;
                     break;
             }
-            productService.updateProduct(product,choiceIDProduct);
+            productService.updateProduct(product, choiceIDProduct);
         }
         while (checkUpdateProduct);
     }
-    public void sortProductView(List<Product> products,User user) throws Exception {
+
+    public void sortProductView(List<Product> products, User user) throws Exception {
         boolean checkSortProduct = false;
         do {
             checkSortProduct = false;
@@ -161,112 +159,49 @@ public class ProductView {
                 checkSearchingProduct = false;
                 bannerApp.menuBanner("Searching-Product");
                 String choiceSearching = scanner.nextLine();
-                switch (choiceSearching){
+                switch (choiceSearching) {
                     case "1":
-                        System.out.println("■ Enter ID Product:");
+                        System.out.println("■ Nhập ID sản phẩm:");
                         long idProduct = Long.parseLong(scanner.nextLine());
                         product = productService.findProductByID(idProduct);
-                        System.out.printf("%10s %20s %20s %10s %10s","ID","Name product","Price","Quantity","Type");
+                        System.out.printf("%10s %20s %20s %10s %10s", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
                         System.out.println();
-                        System.out.println(product) ;
+                        System.out.println(product);
                         break;
                     case "2":
-                        System.out.println("■ Enter Name Product:");
+                        System.out.println("■ Nhập tên sản phẩm:");
                         String name = scanner.nextLine().toUpperCase();
                         List<Product> products = productService.searchProductByName(name);
-//                        products = productService.searchProductByName(name);
                         showProductView(products);
                         break;
                     case "r":
                         mainMenuView(user);
                     default:
-                        System.out.println("Error value! Type again");
-                        checkSearchingProduct=true;
+                        System.out.println("Lỗi! Vui lòng nhập lại");
+                        checkSearchingProduct = true;
                         break;
                 }
             }
             while (checkSearchingProduct);
-        }
-        catch (Exception e){
-            throw new Exception("Value Error");
+        } catch (Exception e) {
+            throw new Exception("Lỗi");
         }
     }
 
 
     public void removeProductView(List<Product> products, User user) throws Exception {
-        System.out.println("■ Enter your ID Product you want to remove:");
+        System.out.println("■ Nhập ID sản phẩm:");
         int idRemovedProduct = Integer.parseInt(scanner.nextLine());
-        productService.removeProductByID(idRemovedProduct,products,user);
+        productService.removeProductByID(idRemovedProduct, products, user);
     }
 
     public void showProductView(List<Product> products) {
-        System.out.println("╔════════════════════════════════LIST PRODUCT══════════════════════════════════╗");
-        System.out.printf("║%10s║ %20s║ %20s║ %10s║ %10s║","ID","Name product","Price","Quantity","Type");
+        System.out.println("╔════════════════════════════════DANH SÁCH SẢN PHẨM══════════════════════════════════╗");
+        System.out.printf("║%10s║ %20s║ %20s║ %10s║ %10s║", "ID", "Tên sản phẩm", "Giá", "Số lượng", "Loại");
         System.out.println();
-        for (Product product: products){
+        for (Product product : products) {
             System.out.println(product);
         }
         System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
     }
-
-//    public void showProductPagination (List<Product> productList){
-//        int perProductPage = 4;
-//        int totalPage = (int)Math.ceil((double) productList.size()/perProductPage);
-//        int currentPage=1;
-//        List<Product> productsPerPageList;
-//        if (currentPage == totalPage) {
-//            productsPerPageList = productList.subList((currentPage - 1) * perProductPage, productList.size());
-//        } else {
-//            productsPerPageList = productList.subList((currentPage - 1) * perProductPage, (currentPage - 1) * perProductPage + perProductPage);
-//        }
-//        System.out.println("╔════════════════════════════════PRODUCT LIST══════════════════════════════════╗");
-//        System.out.println(String.format("║%10s║ %20s║ %20s║ %10s║ %10s║", "ID Product", "Name Product", "Price", "Quantity", "Type"));
-//        for (Product product : productsPerPageList) {
-//            System.out.println(product);
-//        }
-//        System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
-//
-//        System.out.print("║\t"+"Page:");
-//        for (int j = 1; j <= totalPage; j++) {
-//            System.out.print("\t"+j+"  " );
-//        }
-//        showProductPaginationView(totalPage,perProductPage,productList);
-//
-//    }
-
-
-    public void showProductPaginationView (int totalPage,int perProductPage,List<Product> productList){
-        boolean checkContinueAction;
-        do {
-            checkContinueAction = false;
-            System.out.println();
-            System.out.println("Enter your page you want to show:");
-            int currentPage = Integer.parseInt(scanner.nextLine());
-            if (currentPage<=totalPage){
-                List<Product> productsPerPageList1;
-                if (currentPage == totalPage) {
-                    productsPerPageList1 = productList.subList((currentPage - 1) * perProductPage, productList.size());
-                } else {
-                    productsPerPageList1 = productList.subList((currentPage - 1) * perProductPage, (currentPage - 1) * perProductPage + perProductPage);
-                }
-                System.out.println("╔════════════════════════════════PRODUCT LIST══════════════════════════════════╗");
-                for (Product product : productsPerPageList1) {
-                    System.out.println(product);
-                }
-                System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
-                System.out.print("║\t"+"Page:");
-                for (int j = 1; j <= totalPage; j++) {
-                    System.out.print("\t"+j+" " );
-                }
-                System.out.println();
-                checkContinueAction = InitApp.checkContinueWatchPage();
-            }
-            else {
-                System.out.println("Your page must be less or equal than "+totalPage+". Type again");
-                checkContinueAction = true;
-            }
-        }
-        while (checkContinueAction);
-    }
-
 }

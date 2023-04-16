@@ -198,68 +198,6 @@ public class UserService implements IUserService {
         fileService.writeFile(Path, userLine);
     }
 
-//    public String inputNewPassword() {
-//        System.out.print("ENTER NEW PASSWORD: ");
-//        String password;
-//        while (!ValidateUtils.isPasswordValid(password = scanner.nextLine())) {
-//            System.out.println("PASS WORD MUST <= 8 CHARACTERS, INCLUDING 1 CAPITAL LETTER,1 NUMBER, 1 SPECIAL CHARATER");
-//            System.out.print("TRY AGAIN: ");
-//        }
-//        return password;
-//    }
-
-//    public void changePasswordtest() {
-//        String checkPassOld = null;
-//        String passNew = null;
-//        String passNewCheck = null;
-//        User user = new User();
-//        user.setAccount(loginUserView.name);
-//        System.out.println("ENTER OLD PASSWORD: ");
-//        String passOld = InitApp.isNotEmpty();
-//        for (User u : userService.showUserView()) {
-//            if (u.getPassword().equals(passOld)) {
-//                boolean checkFlag = true;
-//                do {
-//                    passNew = inputNewPassword();
-//                    if (passNew.equals(checkPassOld)) {
-//                        System.out.println("NEW PASSWORD IS MATCH OLD PASSWORD, TYPE AGAIN");
-//                    } else {
-//                        checkFlag = false;
-//                    }
-//                } while (checkFlag);
-//                System.out.println("TYPE NEW PASSWORD AGAIN");
-//                boolean checkAgain = true;
-//                do {
-//                    passNewCheck = scanner.nextLine();
-//                    if (passNew.equals(passNewCheck)) {
-//                        user.setPassword(passNewCheck);
-//                        updatePW(user);
-//                        System.out.println("Change password successfull!");
-//                        break;
-//                    } else {
-//                        System.out.println("These password is not match together");
-//                        System.out.println("Type again: ");
-//                        checkAgain = true;
-//                    }
-//                } while (checkAgain);
-//            } else {
-//                System.out.println("☼☼☼ MẬT KHẨU KHÔNG ĐÚNG ☼☼☼");
-//                break;
-//            }
-//            break;
-//        }
-//    }
-//
-//    public void updatePW(User newUser) {
-//        List<User> users = showUserView();
-//        for (User user : users) {
-//            if (user.getAccount().equals(newUser.getAccount())) {
-//                user.setPassword(newUser.getPassword());
-//                saveUserData(users);
-//                break;
-//            }
-//        }
-//    }
 
 
     public void getOrderbyIDUser(User user) {

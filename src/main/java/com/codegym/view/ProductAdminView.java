@@ -36,7 +36,7 @@ public class ProductAdminView {
                 case "r":
                     loginView.login();
                 default:
-                    System.out.println("Wrong Value! Please type again!");
+                    System.out.println("Lỗi! Vui lòng nhập lại");
                     check = true;
             }
         }

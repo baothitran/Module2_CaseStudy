@@ -180,7 +180,6 @@ public class ProductService implements IProductServive {
                     products.sort(comparator);
                     saveData(products);
                     ProductView productView1 = new ProductView();
-//                    productView1.showProductPagination(products);
                     productView1.showProductView(products);
                     break;
                 case 2:
@@ -188,9 +187,7 @@ public class ProductService implements IProductServive {
                     products.sort(comparator);
                     saveData(products);
                     ProductView productView2 = new ProductView();
-//                    productView2.showProductPagination(products);
                     productView2.showProductView(products);
-
                     break;
                 case 0:
                     break;
@@ -202,16 +199,6 @@ public class ProductService implements IProductServive {
         }
         while (checkSortByPrice);
     }
-
-
-//    public boolean beExistbyID (long id){
-//        for (Product product: getAllProducts()){
-//            if (product.getIdProduct()==id){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     public void saveData(List<Product> products){
         List<String> productLines = converListProductToListString(products);

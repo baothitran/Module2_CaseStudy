@@ -18,7 +18,6 @@ public class ManagerUserView {
     FileUtils fileService = new FileUtils();
     public static Scanner scanner = new Scanner(System.in);
     private final UserService userService;
-    public static ProductView productView = new ProductView();
     public static ProductAdminView productAdminView = new ProductAdminView();
 
     public ManagerUserView() {
@@ -307,12 +306,12 @@ public class ManagerUserView {
         System.out.println("┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
         System.out.printf("%10s %20s %20s %20s %15s %11s %25s",
                 " ID",
-                "NAME",
-                "PHONE NUMBER",
-                "EMAIL",
-                "ADDRESS",
-                "ROLE",
-                "CREATED DATE");
+                "Tên người dùng",
+                "Điện thoại",
+                "Email",
+                "Địa chỉ",
+                "Vai trò",
+                "Ngày tạo");
         System.out.println();
         System.out.println("\t─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         for (User user : userService.showUserView()) {

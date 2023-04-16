@@ -44,9 +44,9 @@ public class LoginUserView {
     public static boolean retryLogin () throws Exception {
         do {
             System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.println("║                                               【1】. Đăng nhập lại                                                 ║");
+            System.out.println("║                                               【1】. Đăng nhập lại                                               ║");
             System.out.println("║                                               【2】. Trở về                                                      ║");
-            System.out.println("║                                               【0】. Thoát                                                        ║");
+            System.out.println("║                                               【0】. Thoát                                                       ║");
             System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
             System.out.print("■ Select:");
             int choiceRetryLogin = Integer.parseInt(scanner.nextLine());

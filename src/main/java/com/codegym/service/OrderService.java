@@ -151,7 +151,7 @@ public class OrderService implements IOrderItemService {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Enter the Day you want to show:");
+                    System.out.println("Nhập ngày bạn mốn xem (dd-mm-yyyy):");
                     double total1 = 0;
                     String day = scanner.nextLine();
                     List<Order> orderList1 = new ArrayList<>();
@@ -162,11 +162,11 @@ public class OrderService implements IOrderItemService {
                         }
                     }
                     orderView.printingAllOrders(orderList1,user);
-                    System.out.print("■ Total:"+ total1 +"\n");
+                    System.out.print("■ Tổng:"+ total1 +"\n");
                     check = InitApp.checkContinueActionShowProfit();
                     break;
                 case "2":
-                    System.out.println("Enter the Month you want to show:");
+                    System.out.println("Nhập tháng bạn muốn xem:");
                     double total = 0;
                     String month = scanner.nextLine();
                     List<Order> orderList2 = new ArrayList<>();
@@ -177,13 +177,13 @@ public class OrderService implements IOrderItemService {
                         }
                     }
                     orderView.printingAllOrders(orderList2,user);
-                    System.out.print("■ Total:" +total+"\n");
+                    System.out.print("■ Tổng:" +total+"\n");
                     check = InitApp.checkContinueActionShowProfit();
                     break;
                 case "r":
                     orderView.orderMenuView(user);
                 default:
-                    System.out.println("Wrong value! Type again");
+                    System.out.println("Lỗi! Vui lòng nhập lại");
                     check = true;
             }
         }

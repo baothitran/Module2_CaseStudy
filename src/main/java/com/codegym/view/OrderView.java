@@ -53,10 +53,6 @@ public class OrderView {
                     searchOrderByStatusView(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
                     break;
-//                case "5":
-//                    searchOrderByDurationTime(orderList,user);
-//                    checkOrderView = InitApp.checkContinueActionOrder();
-//                    break;
                 case "5":
                     printingAllOrders(orderList,user);
                     checkOrderView = InitApp.checkContinueActionOrder();
@@ -100,40 +96,6 @@ public class OrderView {
 
     }
 
-    public void searchOrderByDurationTime(List<Order> list,User user) throws Exception {
-        boolean checkContinue;
-        do {
-            checkContinue = false;
-            BannerApp.menuBanner("Search-Order-ByDurationTime");
-            String choice = scanner.nextLine();
-            switch (choice) {
-                case "1":
-                    List<Order> list1 = orderService.searchOrderByDate(list);
-                    System.out.printf("%10s %20s %15s %20s", "ID Product", "Ordered Date", "Total", "OrderItems");
-                    System.out.println();
-                    for (Order order1 : list1) {
-                        System.out.println(order1);
-                    }
-                    checkContinue = InitApp.checkContinueSearchOrderByDurationTime();
-                    break;
-                case "2":
-                    List<Order> list2 = orderService.searchOrderByMonth(list);
-                    System.out.printf("%10s %20s %15s %20s", "ID Product", "Ordered Date", "Total", "OrderItems");
-                    System.out.println();
-                    for (Order order1 : list2) {
-                        System.out.println(order1);
-                    }
-                    checkContinue = InitApp.checkContinueSearchOrderByDurationTime();
-                    break;
-                case "r":
-                    orderMenuView(user);
-                default:
-                    System.out.println("Lỗi! Vui lòng nhập lại");
-                    checkContinue = true;
-            }
-        }
-        while (checkContinue);
-    }
 
     private void searchOrderByStatusView(List<Order> list,User user) throws Exception {
         boolean checkOrderStatus;
@@ -234,7 +196,7 @@ public class OrderView {
 //                            checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
 //                            break;
                         case "2":
-                            System.out.println("Enter STATUS you want to update");
+                            System.out.println("Nhập trạng thái đơn hàng: ");
                             String status = scanner.nextLine();
                             Status choicedStatus = Status.findStatusByName(status);
                             order1.setStatus(choicedStatus);
@@ -267,7 +229,7 @@ public class OrderView {
                 orderItemService.addOrderItem(order1.getOrderItem());
                 orderService.saveOrderData(orderList);
             }
-        } else System.out.println("Order is not exist");
+        } else System.out.println("Đơn hàng không tồn tại");
     }
 
     public void createOrderView(User user) {
@@ -309,7 +271,7 @@ public class OrderView {
         boolean checkInputQuantityAction = false;
         do {
             checkInputQuantityAction = false;
-            System.out.print("■ Enter quantity you want to add:");
+            System.out.print("■ Nhập số lượng:");
             int quantity = Integer.parseInt(scanner.nextLine());
             OrderItem orderItem = checkProductExistinOrder(order, idProduct);
             if (orderItem != null) {
@@ -333,7 +295,7 @@ public class OrderView {
         boolean checkidproduct;
         do {
             checkidproduct = false;
-            System.out.print("■ Enter ID product you want to add:");
+            System.out.print("■ Nhập ID sản phẩm:");
             long id = Long.parseLong(scanner.nextLine());
             int flag = 0;
             for (Product product : productService.getAllProducts()) {
@@ -344,7 +306,7 @@ public class OrderView {
                 }
             }
             if (flag == -1) {
-                System.out.println("Error Value! Type again");
+                System.out.println("Lỗi! Vui lòng nhập lại");
                 checkidproduct = true;
             }
         }
@@ -362,34 +324,34 @@ public class OrderView {
     }
 
     public void showDetailOrderView(List<Order> orderList) {
-        System.out.println("Enter ID Order that you want to show:");
-        System.out.print("■ Select:");
+        System.out.println("Nhập ID đơn hàng:");
+        System.out.print("■ Chọn chức năng:");
         long idFindedOrder = Integer.parseInt(scanner.nextLine());
         Order findedOrder = orderService.getOrderByID(idFindedOrder, orderList);
         showDetailOrderViewByID(findedOrder);
     }
 
     public void showDetailOrderViewByID(Order order) {
-        System.out.println("╔══════════════════════════════════════YOUR BILL═══════════════════════════════════════════════╗");
-        System.out.println("\t" + "\t" + "Order ID: " + order.getId() + "\t" + "Created:" + DateUtils.convertDateToString(order.getDateOrder())+",User: " +order.getNameUser());
+        System.out.println("╔══════════════════════════════════════HOÁ ĐƠN═══════════════════════════════════════════════╗");
+        System.out.println("\t" + "\t" + "ID Đơn hàng: " + order.getId() + "\t" + "Được tạo:" + DateUtils.convertDateToString(order.getDateOrder())+",Khách hàng: " +order.getNameUser());
         for (OrderItem orderItem : order.getOrderItem()) {
             Product product = productService.findProductByID(orderItem.getIdProduct());
             System.out.println(
                     String.format("\t \t \t \t %-20s|%-15s|%-10s|%-10s", product.getNameProduct(), orderItem.getPrice(), orderItem.getQuantity(), orderItem.getQuantity() * orderItem.getPrice())
             );
         }
-        System.out.println("                        \t \t \t \t\t \t \tTotal: " + getTotal(order));
+        System.out.println("                        \t \t \t \t\t \t \tTổng: " + getTotal(order));
         System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     public void showOrderItemsByOrder(Order order,User user) {
-        System.out.println("╔═════════════════════════════════════LIST PRODUCT THAT ORDERED═══════════════════════════════════════╗");
-        System.out.println("          User: "+user.getFullname()+"\tPhone Number:"+user.getMobile()+"\tAddress: "+user.getAddress());
+        System.out.println("╔═════════════════════════════════════SẢN PHẨM ĐƯỢC ĐẶT MUA═══════════════════════════════════════╗");
+        System.out.println("          Khách hàng: "+user.getFullname()+"\tĐiện thoại:"+user.getMobile()+"\tĐịa chỉ: "+user.getAddress());
         for (OrderItem orderItem : order.getOrderItem()) {
             Product product = productService.findProductByID(orderItem.getIdProduct());
             System.out.println(String.format("\t \t \t \t %-20s|%-15s|%-10s|%-10s", product.getNameProduct(), orderItem.getPrice(), orderItem.getQuantity(), orderItem.getQuantity() * orderItem.getPrice()));
         }
-        System.out.println("                        \t \t \t \t\t \t \tTotal: " + getTotal(order));
+        System.out.println("                        \t \t \t \t\t \t \tTổng: " + getTotal(order));
         System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 

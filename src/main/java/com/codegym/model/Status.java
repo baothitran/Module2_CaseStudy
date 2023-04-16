@@ -1,7 +1,7 @@
 package com.codegym.model;
 
 public enum Status {
-    Processing(1),Pending(2),Paid(3),NotPaid(4),Canceled(5);
+    Pending(2),Paid(3),NotPaid(4),Canceled(5);
     private int id;
 
     Status(int id) {

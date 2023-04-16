@@ -27,7 +27,6 @@ public class UserView {
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-//                        productView.showProductPagination(products);
                         productView.showProductView(products);
                         menuUser(user);
                         break;
@@ -49,7 +48,7 @@ public class UserView {
 
             } while (choice != 0);
         } catch (Exception e) {
-            System.out.println("ERROR VALUE, TYPE AGAIN");
+            System.out.println("Lỗi! Vui lòng nhập lại");
         }
     }
 
