@@ -183,7 +183,7 @@ public class OrderService implements IOrderService {
                     System.out.print("■ Tổng:" +total+"\n");
                     check = InitApp.checkContinueActionShowProfit();
                     break;
-                case "r":
+                case "3":
                     orderView.orderMenuView(user);
                 default:
                     System.out.println("Lỗi! Vui lòng nhập lại");

@@ -189,7 +189,7 @@ public class ProductService implements IProductServive {
                     ProductView productView2 = new ProductView();
                     productView2.showProductView(products);
                     break;
-                case 0:
+                case 3:
                     break;
                 default:
                     System.out.println("Lỗi! Vui lòng nhập lại:");

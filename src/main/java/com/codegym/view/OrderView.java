@@ -7,6 +7,7 @@ import com.codegym.model.*;
 import com.codegym.service.OrderItemService;
 import com.codegym.service.OrderService;
 import com.codegym.service.ProductService;
+import com.codegym.service.UserService;
 import com.codegym.utils.DateUtils;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class OrderView {
     OrderService orderService;
     ProductService productService;
     OrderItemService orderItemService;
+    UserService userService;
     Status status;
     static ProductAdminView productAdminView = new ProductAdminView();
 
@@ -27,6 +29,7 @@ public class OrderView {
         productService = new ProductService();
         orderService = new OrderService();
         orderItemService = new OrderItemService();
+        userService = new UserService();
     }
 
     public void orderMenuView(User user) throws Exception {
@@ -78,7 +81,7 @@ public class OrderView {
     }
 
     private void removeOrder(List<Order> list,User user) throws Exception {
-
+        System.out.println("Bạn đang thao tác xoá đơn hàng!!! Y/N ");
         String alert = scanner.nextLine();
         if (alert.toLowerCase().equals("y")) {
             System.out.println("Nhập ID đơn hàng bạn muốn xoá: ");
@@ -93,7 +96,7 @@ public class OrderView {
         }if (alert.toLowerCase().equals("n")) {
             orderMenuView(user);
         }
-
+        System.out.println("Đã xoá thành công!");
     }
 
 
@@ -128,7 +131,7 @@ public class OrderView {
                     printingAllOrders(listOrderedResult4,user);
                     checkOrderStatus = InitApp.checkContinueSearchOrderStatusMenu();
                     break;
-                case "r":
+                case "5":
                     orderMenuView(user);
             }
         }
@@ -136,18 +139,13 @@ public class OrderView {
     }
 
     public void printingAllOrders(List<Order> orderList,User user) {
-        System.out.printf("%7s %15s %10s %9s %52s %20s %15s %8s %12s", "ID", "Ngày đặt","Tổng","Trạng thái", "Sản phẩm đặt","ID Khách","Tên khách hàng","SĐT","Địa chỉ");
+        System.out.printf("%7s %15s %15s %12s %17s %20s %10s %12s", "ID", "Ngày đặt","Tổng","Trạng thái","ID Khách","Tên khách hàng","SĐT","Địa chỉ");
         System.out.println();
         for (Order order : orderList) {
-            List<OrderItem> orderItems = order.getOrderItems();
-            for (OrderItem orderItem : orderItems) {
-                Product product = productService.findProductByID(orderItem.getIdProduct());
-                String temp = String.valueOf(order.getStatus());
-                System.out.printf("║%8s║ %16s║ %6s║ %7s║ %52s║ %4s║ %3s║ %9s║ %12s║ %12s║ %10s║",order.getId(), DateUtils.convertDateToString(order.getDateOrder()),
-                        getTotal(order),temp,product.getNameProduct(), SupportApp.formatNumber(orderItem.getPrice())
-                        ,orderItem.getQuantity(),order.getIdUser(),order.getNameUser(),order.getPhoneNumber(),user.getAddress());
-                System.out.println();
-            }
+            String temp = String.valueOf(order.getStatus());
+            System.out.printf("║%8s║ %16s║ %11s║ %10s║ %21s║ %16s║ %9s║ %12s║",order.getId(), DateUtils.convertDateToString(order.getDateOrder()),
+                    getTotal(order),temp,order.getIdUser(),order.getNameUser(),order.getPhoneNumber(),order.getAddressUser());
+            System.out.println();
         }
     }
 
@@ -166,7 +164,7 @@ public class OrderView {
                     String choice = scanner.nextLine();
                     switch (choice) {
                         case "1":
-                            System.out.print("■ Enter date you want to update:");
+                            System.out.print("■ Nhập ngày của đơn hàng bạn muốn cập nhật (dd-mm-yyyy):");
                             String date = scanner.nextLine();
                             order1.setDateOrder(DateUtils.convertStringToDate(date));
                             orderService.saveOrderData(orderList);
@@ -176,11 +174,13 @@ public class OrderView {
                             System.out.println("Nhập trạng thái đơn hàng: ");
                             String status = scanner.nextLine();
                             Status choicedStatus = Status.findStatusByName(status);
-                            order1.setStatus(choicedStatus);
+                            if(choicedStatus != null){
+                                order1.setStatus(choicedStatus);
+                            }
                             orderService.saveOrderData(orderList);
                             checkUpdateOrderView = InitApp.checkContinueUpdateOrder();
                             break;
-                        case "r":
+                        case "3":
                             orderMenuView(user);
                         default:
                             System.out.println("Lỗi! Vui lòng nhập lại");
@@ -211,10 +211,11 @@ public class OrderView {
 
     public void createOrderView(User user) {
         order = new Order();
-        order.setId(System.currentTimeMillis() / 1000000);
+        order.setId(System.currentTimeMillis() / 100000);
         order.setDateOrder(new Date());
         order.setStatus(status.Pending);
-        order.setIdUser(System.currentTimeMillis()/100000);
+        order.setIdUser(user.getID());
+//        user.getID();
         boolean checkCreateOrder;
         do {
             checkCreateOrder = true;
@@ -229,7 +230,7 @@ public class OrderView {
             if ((orderItem = checkProductExistinOrder(order, product.getIdProduct())) != null) {
                 orderItem.setQuantity(quantity + orderItem.getQuantity());
             } else {
-                OrderItem newOrderItem = new OrderItem(System.currentTimeMillis() / 100000, product.getIdProduct(), order.getId(), quantity, product.getPrice());
+                OrderItem newOrderItem = new OrderItem(System.currentTimeMillis() / 1000000, product.getIdProduct(), order.getId(), quantity, product.getPrice());
                 order.addOrderItem(newOrderItem);
             }
             showOrderItemsByOrder(order,user);
@@ -302,15 +303,14 @@ public class OrderView {
 
     public void showDetailOrderView(List<Order> orderList) {
         System.out.println("Nhập ID đơn hàng:");
-        System.out.print("■ Chọn chức năng:");
         long idFindedOrder = Integer.parseInt(scanner.nextLine());
         Order findedOrder = orderService.getOrderByID(idFindedOrder, orderList);
         showDetailOrderViewByID(findedOrder);
     }
 
     public void showDetailOrderViewByID(Order order) {
-        System.out.println("╔══════════════════════════════════════HOÁ ĐƠN═══════════════════════════════════════════════╗");
-        System.out.println("\t" + "\t" + "ID Đơn hàng: " + order.getId() + "\t" + "Được tạo:" + DateUtils.convertDateToString(order.getDateOrder())+",Khách hàng: " +order.getNameUser());
+        System.out.println("╔════════════════════════════════════════════HOÁ ĐƠN═════════════════════════════════════════════════════╗");
+        System.out.println("\t" + "\t" + "ID Đơn hàng: " + order.getId() + "\t" + "Được tạo:" + DateUtils.convertDateToString(order.getDateOrder())+ "\t" +"Khách hàng: " +order.getNameUser());
         for (OrderItem orderItem : order.getOrderItem()) {
             Product product = productService.findProductByID(orderItem.getIdProduct());
             System.out.println(
@@ -318,18 +318,18 @@ public class OrderView {
             );
         }
         System.out.println("                        \t \t \t \t\t \t \tTổng: " + getTotal(order));
-        System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     public void showOrderItemsByOrder(Order order,User user) {
-        System.out.println("╔═════════════════════════════════════SẢN PHẨM ĐƯỢC ĐẶT MUA═══════════════════════════════════════╗");
+        System.out.println("╔═════════════════════════════════════════SẢN PHẨM ĐƯỢC ĐẶT MUA═══════════════════════════════════════════╗");
         System.out.println("          Khách hàng: "+user.getFullname()+"\tĐiện thoại:"+user.getMobile()+"\tĐịa chỉ: "+user.getAddress());
         for (OrderItem orderItem : order.getOrderItem()) {
             Product product = productService.findProductByID(orderItem.getIdProduct());
             System.out.println(String.format("\t \t \t \t %-20s|%-15s|%-10s|%-10s", product.getNameProduct(), orderItem.getPrice(), orderItem.getQuantity(), orderItem.getQuantity() * orderItem.getPrice()));
         }
         System.out.println("                        \t \t \t \t\t \t \tTổng: " + getTotal(order));
-        System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
     }
 
     public long getTotal(Order order) {

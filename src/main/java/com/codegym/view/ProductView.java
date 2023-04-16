@@ -120,7 +120,7 @@ public class ProductView {
                     product.setPrice(productService.inputPrice(ActionType.Edit));
                     checkUpdateProduct = InitApp.checkContinueUpdateMenu();
                     break;
-                case "r":
+                case "4":
                     mainMenuView(user);
                 default:
                     checkUpdateProduct = true;
@@ -141,7 +141,7 @@ public class ProductView {
                 case "1":
                     productService.sortByPrice(products);
                     break;
-                case "r":
+                case "2":
                     mainMenuView(user);
                 default:
                     checkSortProduct = true;

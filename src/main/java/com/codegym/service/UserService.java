@@ -80,6 +80,7 @@ public class UserService implements IUserService {
 
     @Override
     public void removeUser(Long idUser, User user) throws Exception {
+        System.out.println("Bạn có chắc chắn muốn xoá? Y/N");
         String alert = scanner.nextLine();
         if (alert.toLowerCase().equals("y")) {
             List<User> users = showUserView();
@@ -94,7 +95,7 @@ public class UserService implements IUserService {
         if (alert.toLowerCase().equals("n")) {
             managerUserView.menuUser(user);
         }
-
+        System.out.println("Đã xoá thành công");
 
     }
 

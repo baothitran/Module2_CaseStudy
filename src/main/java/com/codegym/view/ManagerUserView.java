@@ -64,7 +64,7 @@ public class ManagerUserView {
         do {
             checkRemoveAction = false;
             showAllUser();
-            System.out.println("Enter ID User you want to remove");
+            System.out.println("Nhập ID người dùng bạn muốn xoá: ");
             Long idUserDel = inputId(user);
             userService.removeUser(idUserDel,user);
             checkRemoveAction = InitApp.checkContinueRemoveUser();
@@ -76,7 +76,7 @@ public class ManagerUserView {
         do {
             try {
                 showAllUser();
-                System.out.println("Enter ID User you want to update");
+                System.out.println("Nhập ID người dùng bạn muốn chỉnh sửa:");
                 Long id = inputId(user);
                 BannerApp.menuBanner("Update-UserView");
                 int option = SupportApp.retryChoose(0, 7);
@@ -129,7 +129,7 @@ public class ManagerUserView {
     public void addUserView(List<User> users) {
         try {
             User user = new User();
-            Long id = System.currentTimeMillis() / 1000;
+            Long id = System.currentTimeMillis() / 10000;
             String username = inputUsername();
             String password = inputPassword("");
             String fullName = inputFullName();
@@ -255,7 +255,7 @@ public class ManagerUserView {
         System.out.print("Mật khẩu " + name + ": ");
         String password;
         while (!ValidateUtils.isPasswordValid(password = scanner.nextLine())) {
-            System.out.println("Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ viết hoa, 1 số, 1 ký tự đặc biệt");
+            System.out.println("Mật khẩu phải có ít nhất 6 ký tự, bao gồm 1 chữ viết hoa, 1 số, 1 ký tự đặc biệt");
             System.out.print("Nhập mật khẩu: ");
         }
         return password;
